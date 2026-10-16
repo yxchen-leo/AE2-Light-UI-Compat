@@ -1,0 +1,15 @@
+/.deps/
+/build/
+/dist/
+/inspection/
+/validation-mod.json
+__pycache__/
+*.pyc
+*.log
+.env
+.env.*
+/.idea/
+/.vscode/
+*.iml
+Thumbs.db
+.DS_Store

@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT (companion code only; resource assets retain original licenses)"
+clientSideOnly=true
+
+[[mods]]
+modId="ae2isolatedui"
+version="1.0.0"
+displayName="AE2 浅色界面适配 (AE2 Light UI Compat)"
+displayTest="IGNORE_ALL_VERSION"
+authors="Local resource-pack integration"
+description='''Uses private button textures only for AE2-owned GUI widgets.
+Does not change vanilla or unrelated mod buttons. The matching resource pack
+must be enabled; disabling it automatically restores normal button rendering.'''
+
+[[dependencies.ae2isolatedui]]
+modId="forge"
+mandatory=true
+versionRange="[47,)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.ae2isolatedui]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.20.2)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.ae2isolatedui]]
+modId="ae2"
+mandatory=true
+versionRange="[15,16)"
+ordering="AFTER"
+side="CLIENT"
