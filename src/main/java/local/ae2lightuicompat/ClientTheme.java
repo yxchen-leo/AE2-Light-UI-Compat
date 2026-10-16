@@ -1,21 +1,21 @@
-package local.ae2isolatedui;
+package local.ae2lightuicompat;
 
 import java.util.function.Consumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.resources.ResourceLocation;
 
-/** Uses Forge 1.20.1 runtime (SRG) names; build_mod.py needs no remapping pass. */
+/** AE-owned button styling; ForgeGradle remaps Minecraft calls for production. */
 public final class ClientTheme {
     public static final ResourceLocation BUTTONS =
-            new ResourceLocation("ae2isolatedui", "textures/gui/widgets.png");
+            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/widgets.png");
 
     private ClientTheme() {}
 
     public static Consumer<AbstractWidget> markOwned(Consumer<AbstractWidget> original) {
         return widget -> {
             if (widget instanceof ScopedButton button) {
-                button.ae2isolatedui$markOwned();
+                button.ae2lightuicompat$markOwned();
             }
             original.accept(widget);
         };
@@ -24,7 +24,7 @@ public final class ClientTheme {
     public static boolean isPackEnabled() {
         // Check current resource state, so disabling the pack or F3+T immediately
         // restores vanilla rendering; no persistent global texture/state changes.
-        return Minecraft.m_91087_().m_91098_().m_213713_(BUTTONS).isPresent();
+        return Minecraft.getInstance().getResourceManager().getResource(BUTTONS).isPresent();
     }
 
     public static int textColor(int original, boolean active) {

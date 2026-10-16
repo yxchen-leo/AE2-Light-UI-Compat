@@ -1,1 +1,6 @@
-{"pack":{"pack_format":15,"description":"AE2 isolated GUI companion"}}
+{
+  "pack": {
+    "pack_format": 15,
+    "description": "AE2 Light UI Compat"
+  }
+}

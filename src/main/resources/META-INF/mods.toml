@@ -5,7 +5,7 @@ clientSideOnly=true
 
 [[mods]]
 modId="ae2isolatedui"
-version="1.0.0"
+version="${mod_version}"
 displayName="AE2 浅色界面适配 (AE2 Light UI Compat)"
 displayTest="IGNORE_ALL_VERSION"
 authors="Local resource-pack integration"

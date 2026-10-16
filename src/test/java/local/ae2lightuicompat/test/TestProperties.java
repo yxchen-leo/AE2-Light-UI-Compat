@@ -1,4 +1,4 @@
-package local.ae2isolatedui.test;
+package local.ae2lightuicompat.test;
 
 import java.util.*;
 import org.spongepowered.asm.service.*;

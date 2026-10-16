@@ -13,3 +13,12 @@ __pycache__/
 *.iml
 Thumbs.db
 .DS_Store
+
+/.gradle/
+/run/
+/run-data/
+/out/
+/bin/
+/.classpath
+/.project
+/.settings/

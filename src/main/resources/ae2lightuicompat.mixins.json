@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "local.ae2lightuicompat.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "AEWidgetContainerMixin",
+    "AbstractButtonMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "ae2lightuicompat.refmap.json"
+}

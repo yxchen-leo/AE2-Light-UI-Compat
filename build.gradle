@@ -1,0 +1,75 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'net.minecraftforge.gradle' version '6.0.54'
+    id 'org.spongepowered.mixin' version '0.7.38'
+}
+
+version = mod_version
+group = mod_group_id
+base { archivesName = "AE2-Light-UI-Compat-Forge-${minecraft_version}" }
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: minecraft_version
+    copyIdeResources = true
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'info'
+            mods { "${mod_id}" { source sourceSets.main } }
+        }
+    }
+}
+
+repositories {
+    maven {
+        url = 'https://repo.spongepowered.org/repository/maven-public/'
+        content { includeGroup 'org.spongepowered' }
+    }
+    maven {
+        url = 'https://api.modrinth.com/maven'
+        content { includeGroup 'maven.modrinth' }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    // Modrinth version ID pins the Forge build of AE2 15.4.11.
+    implementation fg.deobf('maven.modrinth:ae2:jYgSnxye')
+    runtimeOnly fg.deobf('maven.modrinth:guideme:i7Tp1AHw') // GuideME 20.1.15, required by AE2.
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+mixin {
+    add sourceSets.main, 'ae2lightuicompat.refmap.json'
+    config 'ae2lightuicompat.mixins.json'
+}
+
+tasks.named('processResources', ProcessResources) {
+    filteringCharset = 'UTF-8'
+    inputs.property 'mod_version', mod_version
+    filesMatching('META-INF/mods.toml') { expand mod_version: mod_version }
+}
+
+tasks.named('jar', Jar) {
+    from('LICENSE')
+    manifest.attributes('Implementation-Title': 'AE2 Light UI Compat',
+                        'Implementation-Version': mod_version)
+    finalizedBy 'reobfJar'
+}
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+
+// Exercise real Mixin transformations against the mapped development classes.
+tasks.register('verifyMixins', JavaExec) {
+    dependsOn testClasses
+    javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(17) }
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'local.ae2lightuicompat.test.VerifyMixins'
+    systemProperty 'mixin.service', 'local.ae2lightuicompat.test.TestMixinService'
+    systemProperty 'mixin.env.disableRefMap', 'true'
+    args layout.buildDirectory.dir('mixin-verification').get().asFile.absolutePath
+    doFirst { layout.buildDirectory.dir('mixin-verification').get().asFile.mkdirs() }
+}
+tasks.named('check') { dependsOn 'verifyMixins' }

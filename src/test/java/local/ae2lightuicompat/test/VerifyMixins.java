@@ -1,4 +1,4 @@
-package local.ae2isolatedui.test;
+package local.ae2lightuicompat.test;
 
 import java.io.*;
 import java.lang.reflect.*;
@@ -13,7 +13,7 @@ public final class VerifyMixins {
     public static void main(String[] args) throws Exception {
         MixinBootstrap.init();
         MixinEnvironment.getDefaultEnvironment().setSide(MixinEnvironment.Side.CLIENT);
-        Mixins.addConfiguration("ae2isolatedui.mixins.json");
+        Mixins.addConfiguration("ae2lightuicompat.mixins.json");
         Class<?> type = Class.forName("org.spongepowered.asm.mixin.transformer.MixinTransformer");
         Constructor<?> constructor = type.getDeclaredConstructor();
         constructor.setAccessible(true);
@@ -38,12 +38,12 @@ public final class VerifyMixins {
                 if ((method.access & (Opcodes.ACC_ABSTRACT | Opcodes.ACC_NATIVE)) == 0)
                     new Analyzer<BasicValue>(new BasicVerifier()).analyze(node.name, method);
                 for (AbstractInsnNode instruction : method.instructions) {
-                    if (instruction instanceof MethodInsnNode call && call.name.contains("ae2isolatedui$")) hooks++;
+                    if (instruction instanceof MethodInsnNode call && call.name.contains("ae2lightuicompat$")) hooks++;
                 }
             }
             int expected = target.endsWith("AbstractButton") ? 2 : 1;
             if (hooks != expected) throw new AssertionError(target + " hook count " + hooks + ", expected " + expected);
-            if (target.endsWith("AbstractButton") && !node.interfaces.contains("local/ae2isolatedui/ScopedButton"))
+            if (target.endsWith("AbstractButton") && !node.interfaces.contains("local/ae2lightuicompat/ScopedButton"))
                 throw new AssertionError("Ownership marker not attached");
             Path save = Path.of(args[0], target.substring(target.lastIndexOf('.') + 1) + ".class");
             Files.write(save, output);
