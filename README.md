@@ -6,7 +6,7 @@ A client-side button styling companion for Applied Energistics 2 on **Minecraft 
 
 [Published releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [Report an issue](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-Current source version: **1.1.1**, paired with **AE2 & Addons Texture Backport 1.1.1**. Local artifacts are in `build/libs/`; this update has not been published to GitHub Releases.
+Current source version: **1.1.1**, paired with **AE2 & Addons Texture Backport 1.1.1**. Download the JAR from [GitHub Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases); local build artifacts are in `build/libs/`.
 
 The vertical toolbar now has a continuous, dynamically sized background connected to the main panel. Registered full-size toolbar icons use 18×20 backgrounds, spacing 6, hover depression and keyboard focus styling. Half-size icons retain their existing renderer. Original actions and 16×16 hitboxes are preserved. Both `textures/gui/vertical_buttons_bg.png` and `textures/gui/toolbar_buttons.png` must be present in the `ae2lightuicompat` namespace to enable the feature; resource reloads re-evaluate availability.
 
