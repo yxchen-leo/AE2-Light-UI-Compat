@@ -5,6 +5,7 @@ import appeng.client.gui.style.Blitter;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -41,8 +42,7 @@ public final class ToolbarRenderer {
                 .src(0, sourceY, 21, height).dest(x, y, width, height).blit(graphics);
     }
 
-    public static void button(GuiGraphics graphics, Button button, Icon icon, Item item,
-                              boolean disableBackground) {
+    public static void frame(GuiGraphics graphics, AbstractWidget button) {
         int x = button.getX();
         int y = button.getY() + (button.isHovered() ? 1 : 0);
         int sourceX = button.isHovered() ? 212 : button.isFocused() ? 194 : 176;
@@ -51,20 +51,19 @@ public final class ToolbarRenderer {
         graphics.pose().pushPose();
         try {
             graphics.pose().translate(0, 0, 2);
-            if (!disableBackground) {
-                Blitter.texture(ClientTheme.TOOLBAR_BUTTONS)
-                        .src(sourceX, 128, 18, 20).dest(x - 1, y, 18, 20).blit(graphics);
-            }
-            graphics.pose().translate(0, 0, 1);
-            if (item != null) {
-                graphics.renderItem(new ItemStack(item), x, y + 1);
-                graphics.flush();
-            } else if (icon != null) {
-                icon.getBlitter().opacity(button.active ? 1.0f : 0.5f)
-                        .dest(x, y + 1).blit(graphics);
-            }
+            Blitter.texture(ClientTheme.TOOLBAR_BUTTONS)
+                    .src(sourceX, 128, 18, 20).dest(x - 1, y, 18, 20).blit(graphics);
         } finally {
             graphics.pose().popPose();
+        }
+    }
+
+    public static void icon(GuiGraphics graphics, Button button, Icon icon, Item item) {
+        if (item != null) {
+            graphics.renderItem(new ItemStack(item), button.getX(), button.getY());
+        } else if (icon != null && icon != Icon.TOOLBAR_BUTTON_BACKGROUND) {
+            icon.getBlitter().opacity(button.active ? 1.0f : 0.5f)
+                    .dest(button.getX(), button.getY()).blit(graphics);
         }
     }
 }
