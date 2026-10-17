@@ -9,6 +9,10 @@ import net.minecraft.resources.ResourceLocation;
 public final class ClientTheme {
     public static final ResourceLocation BUTTONS =
             new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/widgets.png");
+    public static final ResourceLocation TOOLBAR_BACKGROUND =
+            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/vertical_buttons_bg.png");
+    public static final ResourceLocation TOOLBAR_BUTTONS =
+            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/toolbar_buttons.png");
 
     private ClientTheme() {}
 
@@ -30,5 +34,11 @@ public final class ClientTheme {
     public static int textColor(int original, boolean active) {
         // Keep vanilla alpha/fade semantics, with dark text on the light button.
         return (original & 0xFF000000) | (active ? 0x413F54 : 0xD2D3DF);
+    }
+
+    public static boolean isToolbarEnabled() {
+        var resources = Minecraft.getInstance().getResourceManager();
+        return resources.getResource(TOOLBAR_BACKGROUND).isPresent()
+                && resources.getResource(TOOLBAR_BUTTONS).isPresent();
     }
 }

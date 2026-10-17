@@ -9,9 +9,10 @@ version="${mod_version}"
 displayName="AE2 浅色界面适配 (AE2 Light UI Compat)"
 displayTest="IGNORE_ALL_VERSION"
 authors="Local resource-pack integration"
-description='''Uses private button textures only for AE2-owned GUI widgets.
-Does not change vanilla or unrelated mod buttons. The matching resource pack
-must be enabled; disabling it automatically restores normal button rendering.'''
+description='''Light button styling and a connected, dynamically sized vertical
+toolbar for AE2. Includes modern toolbar button backgrounds and hover/focus
+states. Requires the matching resource pack; missing theme textures restore
+the original rendering. Client-side only.'''
 
 [[dependencies.ae2lightuicompat]]
 modId="forge"

@@ -6,7 +6,12 @@ A client-side button styling companion for Applied Energistics 2 on **Minecraft 
 
 [Published releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [Report an issue](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-Version 1.0.2 changes the internal ID and requires resource pack 1.0.3 or newer. If 1.0.2 is not yet listed in Releases, build this revision using the instructions below; Release 1.0.1 uses the previous ID.
+Current source version: **1.1.0**, paired with **AE2 & Addons Texture Backport 1.1.0**. Local artifacts are in `build/libs/`; this update has not been published to GitHub Releases.
+
+The vertical toolbar now has a continuous, dynamically sized background connected to the main panel. Registered full-size toolbar icons use 18×20 backgrounds, spacing 6, hover depression and keyboard focus styling. Half-size icons retain their existing renderer. Original actions and 16×16 hitboxes are preserved. Both `textures/gui/vertical_buttons_bg.png` and `textures/gui/toolbar_buttons.png` must be present in the `ae2lightuicompat` namespace to enable the feature; resource reloads re-evaluate availability.
+
+The companion pack sets the common toolbar origin to `left: 3, top: 1`. Crafting status keeps its own origin. The build and offline transformation checks pass for Forge 47.4.0 / AE2 15.4.11; no in-game visual acceptance has been performed.
+
 
 ## Why this mod exists
 
@@ -40,7 +45,7 @@ The build and offline injection checks use **Forge 47.4.0 / AE2 15.4.11**. Fabri
 ## Installation
 
 1. Install Forge for Minecraft 1.20.1, AE2, and AE2's required dependencies, including GuideME for AE2 15.4.11.
-2. Download `AE2-Light-UI-Compat-Forge-1.20.1-1.0.2.jar` from [Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases).
+2. Download `AE2-Light-UI-Compat-Forge-1.20.1-1.1.0.jar` from [Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases).
 3. Put the JAR in your client instance's `mods` folder.
 4. Install and enable the compatible resource pack in Minecraft's resource pack settings. The pack is distributed separately and is not included in this repository's Release assets.
 5. When upgrading, remove the previous companion JAR, including any old `AE2-Isolated-Light-Buttons` version. Keep only one copy installed.
@@ -83,7 +88,7 @@ Linux/macOS:
 ./gradlew build
 ```
 
-The output is `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.0.2.jar`.
+The output is `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.1.0.jar`.
 
 Import the project into IntelliJ IDEA as a Gradle project. Useful development commands:
 

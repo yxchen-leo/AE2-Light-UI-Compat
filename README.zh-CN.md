@@ -6,7 +6,14 @@
 
 [已发布版本](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [反馈问题](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-1.0.2 更改了内部 ID，需要配合资源包 1.0.3 或更新版本。如果 Releases 尚未提供 1.0.2，请按下方说明构建当前源码；已发布的 1.0.1 使用旧 ID。
+当前源码版本为 **1.1.0**，配套资源包为 **AE2 & Addons Texture Backport 1.1.0**。产物位于 `build/libs/`，本次尚未发布到 GitHub Releases。
+
+1.1.0 新增 1.21.1 风格的左侧工具栏：连续底板连接主面板，按可见按钮数量伸缩；按钮背景为 18×20，排列间隔为 6，支持悬停下沉和键盘焦点样式。适配通过 `VerticalButtonBar` 注册的普通图标按钮；半尺寸按钮保留原绘制。按钮操作与 16×16 点击区域保持 AE2 原有行为。
+
+新增资源为 `assets/ae2lightuicompat/textures/gui/vertical_buttons_bg.png` 和 `toolbar_buttons.png`。两张贴图同时存在时启用侧栏适配，资源重载后重新判定。资源包将公共侧栏设为 `left: 3, top: 1`，使底板覆盖主面板边缘；合成状态页保留独立定位。
+
+1.1.0 已通过 Forge 47.4.0 / AE2 15.4.11 构建和四个目标类的离线 Mixin 注入检查；尚未在游戏内验收画面。
+
 
 ## 为什么需要这个模组
 
@@ -40,7 +47,7 @@
 ## 安装方法
 
 1. 安装 Minecraft 1.20.1 对应的 Forge、AE2 及其必需依赖；AE2 15.4.11 包括 GuideME 依赖。
-2. 从 [Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) 下载 `AE2-Light-UI-Compat-Forge-1.20.1-1.0.2.jar`。
+2. 使用本地 `build/libs/` 内的产物，或发布后从 [Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) 下载 `AE2-Light-UI-Compat-Forge-1.20.1-1.1.0.jar`。
 3. 将 JAR 放入客户端游戏实例的 `mods` 文件夹。
 4. 单独安装配套资源包，并在游戏的资源包设置中启用。资源包不包含在本仓库的 Release 附件中。
 5. 更新时移除旧版适配模组，包括旧名称 `AE2-Isolated-Light-Buttons` 的 JAR，只保留一个版本。
@@ -83,7 +90,7 @@ Linux/macOS：
 ./gradlew build
 ```
 
-产物位于 `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.0.2.jar`。
+产物位于 `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.1.0.jar`。
 
 在 IntelliJ IDEA 中按 Gradle 工程导入。常用开发命令：
 

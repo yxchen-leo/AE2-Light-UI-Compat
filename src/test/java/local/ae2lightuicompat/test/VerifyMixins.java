@@ -22,7 +22,9 @@ public final class VerifyMixins {
         transform.setAccessible(true);
         int transformed = 0;
         for (String target : new String[]{"net.minecraft.client.gui.components.AbstractButton",
-                                         "appeng.client.gui.WidgetContainer"}) {
+                                         "appeng.client.gui.WidgetContainer",
+                                         "appeng.client.gui.widgets.VerticalButtonBar",
+                                         "appeng.client.gui.widgets.IconButton"}) {
             String resource = target.replace('.', '/') + ".class";
             byte[] input;
             try (InputStream in = VerifyMixins.class.getClassLoader().getResourceAsStream(resource)) {
@@ -41,16 +43,22 @@ public final class VerifyMixins {
                     if (instruction instanceof MethodInsnNode call && call.name.contains("ae2lightuicompat$")) hooks++;
                 }
             }
-            int expected = target.endsWith("AbstractButton") ? 2 : 1;
+            int expected = target.endsWith("AbstractButton") ? 2 : target.endsWith("VerticalButtonBar") ? 3 : 1;
             if (hooks != expected) throw new AssertionError(target + " hook count " + hooks + ", expected " + expected);
             if (target.endsWith("AbstractButton") && !node.interfaces.contains("local/ae2lightuicompat/ScopedButton"))
                 throw new AssertionError("Ownership marker not attached");
+            if (target.endsWith("IconButton") && !node.interfaces.contains("local/ae2lightuicompat/ToolbarButton"))
+                throw new AssertionError("Toolbar marker not attached");
+            if (target.endsWith("VerticalButtonBar") && node.methods.stream().noneMatch(m ->
+                    m.name.equals("drawBackgroundLayer") && m.desc.equals(
+                        "(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/renderer/Rect2i;Lappeng/client/Point;)V")))
+                throw new AssertionError("Toolbar background implementation missing");
             Path save = Path.of(args[0], target.substring(target.lastIndexOf('.') + 1) + ".class");
             Files.write(save, output);
             System.out.println("PASS real Mixin transformation + ASM bytecode analysis: " + target + " (" + hooks + " hooks)");
             transformed++;
         }
-        if (transformed != 2) throw new AssertionError();
+        if (transformed != 4) throw new AssertionError();
         System.out.println("PASS all injection targets matched Forge 47.4.0 / AE2 15.4.11; no game launched.");
     }
 }
