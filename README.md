@@ -4,7 +4,9 @@
 
 A client-side button styling companion for Applied Energistics 2 on **Minecraft 1.20.1 with Forge**. It gives buttons registered through AE2's widget system their own light-theme texture and readable text colors, without globally replacing Minecraft's shared button texture.
 
-[Download 1.0.1](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.0.1) · [Report an issue](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
+[Published releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [Report an issue](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
+
+Version 1.0.2 changes the internal ID and requires resource pack 1.0.3 or newer. If 1.0.2 is not yet listed in Releases, build this revision using the instructions below; Release 1.0.1 uses the previous ID.
 
 ## Why this mod exists
 
@@ -38,7 +40,7 @@ The build and offline injection checks use **Forge 47.4.0 / AE2 15.4.11**. Fabri
 ## Installation
 
 1. Install Forge for Minecraft 1.20.1, AE2, and AE2's required dependencies, including GuideME for AE2 15.4.11.
-2. Download `AE2-Light-UI-Compat-Forge-1.20.1-1.0.1.jar` from [Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases).
+2. Download `AE2-Light-UI-Compat-Forge-1.20.1-1.0.2.jar` from [Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases).
 3. Put the JAR in your client instance's `mods` folder.
 4. Install and enable the compatible resource pack in Minecraft's resource pack settings. The pack is distributed separately and is not included in this repository's Release assets.
 5. When upgrading, remove the previous companion JAR, including any old `AE2-Isolated-Light-Buttons` version. Keep only one copy installed.
@@ -58,12 +60,12 @@ For a bug report, include the relevant versions, enabled resource packs and thei
 Provide this file using the Minecraft 1.20.1 `widgets.png` button layout:
 
 ```text
-assets/ae2isolatedui/textures/gui/widgets.png
+assets/ae2lightuicompat/textures/gui/widgets.png
 ```
 
 Active text uses `#413F54`; disabled text uses `#D2D3DF`. The mod preserves the existing alpha component.
 
-The internal mod ID remains `ae2isolatedui`, and the texture namespace uses the same identifier to keep existing packs compatible. These identifiers are separate from the display name, **AE2 浅色界面适配 (AE2 Light UI Compat)**. The Java entry point is `local.ae2lightuicompat.AE2LightUICompat`.
+Since 1.0.2, the internal mod ID and texture namespace are `ae2lightuicompat`. Use resource pack 1.0.3 or newer and remove all older companion JARs before upgrading; the old ID and texture path are no longer used. These identifiers are separate from the display name, **AE2 浅色界面适配 (AE2 Light UI Compat)**. The Java entry point is `local.ae2lightuicompat.AE2LightUICompat`.
 
 ## Build and development
 
@@ -81,7 +83,7 @@ Linux/macOS:
 ./gradlew build
 ```
 
-The output is `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.0.1.jar`.
+The output is `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.0.2.jar`.
 
 Import the project into IntelliJ IDEA as a Gradle project. Useful development commands:
 
@@ -95,7 +97,7 @@ Import the project into IntelliJ IDEA as a Gradle project. Useful development co
 
 `verifyMixins` applies real Mixin transformations to Minecraft and AE2 development classes and checks the resulting bytecode with ASM. It runs as part of `build`. ForgeGradle remaps the release JAR, and the Mixin annotation processor generates its reference map.
 
-For 1.0.1, the build and offline transformations against both development classes and production Forge 47.4.0 / AE2 15.4.11 classes passed. These checks do not replace in-game visual testing; the release verification did not launch Minecraft.
+For 1.0.2, the build and offline transformations against both development classes and production Forge 47.4.0 / AE2 15.4.11 classes passed. These checks do not replace in-game visual testing; the release verification did not launch Minecraft.
 
 ```text
 ├── build.gradle                 # Dependencies, ForgeGradle, Mixin and checks

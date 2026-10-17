@@ -4,7 +4,9 @@
 
 适用于 **Minecraft 1.20.1 / Forge** 的 AE2 客户端按钮适配模组。为通过 AE2 控件体系注册的按钮提供独立的浅色贴图和清晰的文字颜色，避免全局替换 Minecraft 通用按钮贴图。
 
-[下载 1.0.1](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.0.1) · [反馈问题](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
+[已发布版本](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [反馈问题](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
+
+1.0.2 更改了内部 ID，需要配合资源包 1.0.3 或更新版本。如果 Releases 尚未提供 1.0.2，请按下方说明构建当前源码；已发布的 1.0.1 使用旧 ID。
 
 ## 为什么需要这个模组
 
@@ -38,7 +40,7 @@
 ## 安装方法
 
 1. 安装 Minecraft 1.20.1 对应的 Forge、AE2 及其必需依赖；AE2 15.4.11 包括 GuideME 依赖。
-2. 从 [Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) 下载 `AE2-Light-UI-Compat-Forge-1.20.1-1.0.1.jar`。
+2. 从 [Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) 下载 `AE2-Light-UI-Compat-Forge-1.20.1-1.0.2.jar`。
 3. 将 JAR 放入客户端游戏实例的 `mods` 文件夹。
 4. 单独安装配套资源包，并在游戏的资源包设置中启用。资源包不包含在本仓库的 Release 附件中。
 5. 更新时移除旧版适配模组，包括旧名称 `AE2-Isolated-Light-Buttons` 的 JAR，只保留一个版本。
@@ -58,12 +60,12 @@
 请按 Minecraft 1.20.1 `widgets.png` 的按钮布局提供以下文件：
 
 ```text
-assets/ae2isolatedui/textures/gui/widgets.png
+assets/ae2lightuicompat/textures/gui/widgets.png
 ```
 
 活跃按钮文字颜色为 `#413F54`，禁用按钮为 `#D2D3DF`，模组会保留原有透明度。
 
-内部模组 ID 保留为 `ae2isolatedui`，贴图命名空间也沿用这个标识，以兼容已有资源包。它们与游戏内显示名称 **AE2 浅色界面适配 (AE2 Light UI Compat)** 是不同概念。Java 入口类为 `local.ae2lightuicompat.AE2LightUICompat`。
+从 1.0.2 起，内部模组 ID 和贴图命名空间统一为 `ae2lightuicompat`。请配合资源包 1.0.3 或更新版本使用，升级前移除所有旧版适配模组 JAR；不再使用旧 ID 和贴图路径。它们与游戏内显示名称 **AE2 浅色界面适配 (AE2 Light UI Compat)** 是不同概念。Java 入口类为 `local.ae2lightuicompat.AE2LightUICompat`。
 
 ## 构建与开发
 
@@ -81,7 +83,7 @@ Linux/macOS：
 ./gradlew build
 ```
 
-产物位于 `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.0.1.jar`。
+产物位于 `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.0.2.jar`。
 
 在 IntelliJ IDEA 中按 Gradle 工程导入。常用开发命令：
 
@@ -95,7 +97,7 @@ Linux/macOS：
 
 `verifyMixins` 会对 Minecraft 和 AE2 的开发环境类执行真实 Mixin 注入，并使用 ASM 检查生成的字节码；`build` 会自动执行该任务。发布 JAR 由 ForgeGradle 重映射，Mixin 引用映射由注解处理器生成。
 
-1.0.1 已通过构建，以及开发环境和 Forge 47.4.0 / AE2 15.4.11 生产运行时类的离线注入检查。这些检查不能代替游戏画面验收，本次发布验证没有启动 Minecraft。
+1.0.2 已通过构建，以及开发环境和 Forge 47.4.0 / AE2 15.4.11 生产运行时类的离线注入检查。这些检查不能代替游戏画面验收，本次发布验证没有启动 Minecraft。
 
 ```text
 ├── build.gradle                 # 依赖、ForgeGradle、Mixin 和验证任务
