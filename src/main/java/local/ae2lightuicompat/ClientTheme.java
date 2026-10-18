@@ -13,6 +13,8 @@ public final class ClientTheme {
             new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/vertical_buttons_bg.png");
     public static final ResourceLocation TOOLBAR_BUTTONS =
             new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/toolbar_buttons.png");
+    public static final ResourceLocation TABS =
+            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/tab_buttons.png");
 
     private ClientTheme() {}
 
@@ -40,5 +42,9 @@ public final class ClientTheme {
         var resources = Minecraft.getInstance().getResourceManager();
         return resources.getResource(TOOLBAR_BACKGROUND).isPresent()
                 && resources.getResource(TOOLBAR_BUTTONS).isPresent();
+    }
+
+    public static boolean isTabEnabled() {
+        return Minecraft.getInstance().getResourceManager().getResource(TABS).isPresent();
     }
 }

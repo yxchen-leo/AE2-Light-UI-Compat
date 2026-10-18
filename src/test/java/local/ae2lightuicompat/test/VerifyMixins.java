@@ -26,7 +26,9 @@ public final class VerifyMixins {
                                          "appeng.client.gui.widgets.VerticalButtonBar",
                                          "appeng.client.gui.widgets.IconButton",
                                          "net.minecraft.client.gui.components.AbstractWidget",
-                                         "appeng.client.gui.style.Blitter"}) {
+                                         "appeng.client.gui.style.Blitter",
+                                         "appeng.client.gui.widgets.TabButton",
+                                         "appeng.client.gui.implementations.AESubScreen"}) {
             String resource = target.replace('.', '/') + ".class";
             byte[] input;
             try (InputStream in = VerifyMixins.class.getClassLoader().getResourceAsStream(resource)) {
@@ -45,12 +47,20 @@ public final class VerifyMixins {
                     if (instruction instanceof MethodInsnNode call && call.name.contains("ae2lightuicompat$")) hooks++;
                 }
             }
-            int expected = target.endsWith("AbstractButton") ? 3 : target.endsWith("VerticalButtonBar") ? 3 : 1;
+            int expected = target.endsWith("AbstractButton") || target.endsWith("VerticalButtonBar")
+                    || target.endsWith("WidgetContainer") ? 3 : target.endsWith("AESubScreen") ? 2 : 1;
             if (hooks != expected) throw new AssertionError(target + " hook count " + hooks + ", expected " + expected);
             if (target.endsWith("AbstractButton") && !node.interfaces.contains("local/ae2lightuicompat/ScopedButton"))
                 throw new AssertionError("Ownership marker not attached");
             if (target.endsWith("AbstractButton") && !node.interfaces.contains("local/ae2lightuicompat/ToolbarButton"))
                 throw new AssertionError("Toolbar marker not attached");
+            if (target.endsWith("TabButton")) {
+                if (!node.interfaces.contains("local/ae2lightuicompat/NavigationTab"))
+                    throw new AssertionError("Navigation marker not attached");
+                if (node.fields.stream().noneMatch(f -> f.name.equals("item"))
+                        || node.fields.stream().noneMatch(f -> f.name.equals("icon")))
+                    throw new AssertionError("Original tab payload lost; resource reload fallback broken");
+            }
             if (target.endsWith("AbstractWidget")) {
                 MethodNode invoker = node.methods.stream().filter(m -> m.name.equals("ae2lightuicompat$renderOriginal"))
                         .findFirst().orElseThrow(() -> new AssertionError("Missing virtual renderer bridge"));
@@ -70,7 +80,15 @@ public final class VerifyMixins {
             System.out.println("PASS real Mixin transformation + ASM bytecode analysis: " + target + " (" + hooks + " hooks)");
             transformed++;
         }
-        if (transformed != 6) throw new AssertionError();
+        if (transformed != 8) throw new AssertionError();
+        for (String id : new String[]{"back", "button_back"}) {
+            if (local.ae2lightuicompat.TabRenderer.roleFor(id) != local.ae2lightuicompat.TabRenderer.BACK)
+                throw new AssertionError("Missed back entry: " + id);
+        }
+        for (String id : new String[]{"modeTabButton0", "upgrade", "background", "goBackLater"}) {
+            if (local.ae2lightuicompat.TabRenderer.roleFor(id) != local.ae2lightuicompat.TabRenderer.NONE)
+                throw new AssertionError("Non-navigation item tab was reclassified: " + id);
+        }
         if (local.ae2lightuicompat.ButtonTextRenderer.color(true, false) != 0xF2F2F2
                 || local.ae2lightuicompat.ButtonTextRenderer.color(true, true) != 0x517497
                 || local.ae2lightuicompat.ButtonTextRenderer.color(false, false) != 0x413F54)

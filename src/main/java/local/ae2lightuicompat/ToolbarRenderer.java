@@ -62,8 +62,9 @@ public final class ToolbarRenderer {
         if (item != null) {
             graphics.renderItem(new ItemStack(item), button.getX(), button.getY());
         } else if (icon != null && icon != Icon.TOOLBAR_BUTTON_BACKGROUND) {
-            icon.getBlitter().opacity(button.active ? 1.0f : 0.5f)
-                    .dest(button.getX(), button.getY()).blit(graphics);
+            // Modern full-size icons retain full opacity when inactive; only
+            // the half-size renderer dims them (and stays outside this scope).
+            icon.getBlitter().dest(button.getX(), button.getY()).blit(graphics);
         }
     }
 }

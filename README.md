@@ -6,13 +6,15 @@ A client-side button styling companion for Applied Energistics 2 on **Minecraft 
 
 [Published releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [Report an issue](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-Current source version: **1.1.1**, paired with **AE2 & Addons Texture Backport 1.1.1**. Download the JAR from [GitHub Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases); local build artifacts are in `build/libs/`.
+Current source version: **1.1.2**, paired with **AE2 & Addons Texture Backport 1.1.2**. Download the JAR from [the 1.1.2 release](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.1.2); local build artifacts are in `build/libs/`.
 
 The vertical toolbar now has a continuous, dynamically sized background connected to the main panel. Registered full-size toolbar icons use 18×20 backgrounds, spacing 6, hover depression and keyboard focus styling. Half-size icons retain their existing renderer. Original actions and 16×16 hitboxes are preserved. Both `textures/gui/vertical_buttons_bg.png` and `textures/gui/toolbar_buttons.png` must be present in the `ae2lightuicompat` namespace to enable the feature; resource reloads re-evaluate availability.
 
 The companion pack sets the common toolbar origin to `left: 3, top: 1`. Crafting status keeps its own origin. The build and offline transformation checks pass for Forge 47.4.0 / AE2 15.4.11; no in-game visual acceptance has been performed.
 
 1.1.1 fixes shadow-free button text and state colors, shifts the CPU-list toolbar by one pixel, and wraps complete toolbar rendering to preserve AE2 Crystal Science and AE2 Lightning Tech custom icons. Applies to registered full-size 16×16 toolbar buttons. Six offline transformation checks do not replace in-game visual acceptance.
+
+1.1.2 adds semantic back arrows for AE2 and compatible addon submenus, the modern priority icon and tab frames/offsets. It fixes the wireless settings/trash entries with pack 1.1.2. Dedicated `tab_buttons.png` enables the feature; removing it restores original item icons and rendering. See [GUI audit](docs/1.1.2-GUI-audit.md) for verified paths and remaining differences.
 
 ## Why this mod exists
 
@@ -23,7 +25,7 @@ AE2 Light UI Compat marks buttons registered through AE2's widget container and 
 ## Features and scope
 
 - Dedicated light-theme textures for supported AE2 buttons, including priority adjustment controls.
-- Dark text on active buttons and a separate disabled text color, preserving the original text alpha.
+- Modern normal/hover/disabled text colors with no shadow when the toolbar theme is present; preserves text alpha.
 - Automatic fallback to the original rendering when the dedicated texture is unavailable, including after disabling the resource pack and reloading resources.
 - Client-side installation; no server installation required.
 
@@ -46,7 +48,7 @@ The build and offline injection checks use **Forge 47.4.0 / AE2 15.4.11**. Fabri
 ## Installation
 
 1. Install Forge for Minecraft 1.20.1, AE2, and AE2's required dependencies, including GuideME for AE2 15.4.11.
-2. Download `AE2-Light-UI-Compat-Forge-1.20.1-1.1.1.jar` from [Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases).
+2. Download `AE2-Light-UI-Compat-Forge-1.20.1-1.1.2.jar` from [Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.1.2), or use your local build in `build/libs/`.
 3. Put the JAR in your client instance's `mods` folder.
 4. Install and enable the compatible resource pack in Minecraft's resource pack settings. The pack is distributed separately and is not included in this repository's Release assets.
 5. When upgrading, remove the previous companion JAR, including any old `AE2-Isolated-Light-Buttons` version. Keep only one copy installed.
@@ -69,7 +71,7 @@ Provide this file using the Minecraft 1.20.1 `widgets.png` button layout:
 assets/ae2lightuicompat/textures/gui/widgets.png
 ```
 
-Active text uses `#413F54`; disabled text uses `#D2D3DF`. The mod preserves the existing alpha component.
+With the modern toolbar textures, text uses normal `#F2F2F2`, hover `#517497` and disabled `#413F54`, without shadows. Packs that only supply `widgets.png` retain the legacy dark-text palette (`#413F54` / `#D2D3DF`). Alpha is preserved.
 
 Since 1.0.2, the internal mod ID and texture namespace are `ae2lightuicompat`. Use resource pack 1.0.3 or newer and remove all older companion JARs before upgrading; the old ID and texture path are no longer used. These identifiers are separate from the display name, **AE2 浅色界面适配 (AE2 Light UI Compat)**. The Java entry point is `local.ae2lightuicompat.AE2LightUICompat`.
 
@@ -89,7 +91,7 @@ Linux/macOS:
 ./gradlew build
 ```
 
-The output is `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.1.1.jar`.
+The output is `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.1.2.jar`.
 
 Import the project into IntelliJ IDEA as a Gradle project. Useful development commands:
 

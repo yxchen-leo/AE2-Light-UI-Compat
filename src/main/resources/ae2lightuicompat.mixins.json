@@ -10,7 +10,9 @@
     "IconButtonMixin",
     "AbstractWidgetMixin",
     "WidgetRenderAccess",
-    "BlitterMixin"
+    "BlitterMixin",
+    "TabButtonMixin",
+    "AESubScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
