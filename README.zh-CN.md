@@ -6,7 +6,7 @@
 
 [已发布版本](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [反馈问题](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-当前源码版本为 **1.1.2**，配套资源包为 **AE2 & Addons Texture Backport 1.1.2**。产物位于 `build/libs/`，也可从 [1.1.2 Release](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.1.2) 下载。
+当前源码版本为 **1.1.3**，配套资源包为 **AE2 & Addons Texture Backport 1.1.3**。产物位于 `build/libs/`，也可从 [1.1.3 Release](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.1.3) 下载。
 
 1.1.0 新增 1.21.1 风格的左侧工具栏：连续底板连接主面板，按可见按钮数量伸缩；按钮背景为 18×20，排列间隔为 6，支持悬停下沉和键盘焦点样式。适配通过 `VerticalButtonBar` 注册的普通图标按钮；半尺寸按钮保留原绘制。按钮操作与 16×16 点击区域保持 AE2 原有行为。
 
@@ -17,6 +17,8 @@
 1.1.1 修正：文字按钮使用高版本的无阴影文字与普通/悬停/禁用配色；CPU 列表侧栏右移 1 像素；统一包裹整个侧栏按钮渲染调用，覆盖水晶科技的独立按钮类与闪电科技追加的状态图标。仅适配注册到 AE2 侧栏的普通 16×16 按钮。六个目标类的离线检查不能代替游戏内复验。
 
 1.1.2 修复 AE2 与兼容附属子页面的返回箭头、优先级入口图标、页签背景和图标偏移，配套资源包修正无线设置/垃圾桶页面定位。专用 `tab_buttons.png` 存在时启用；移除后恢复原有物品图标和渲染。详见 [GUI 核对报告](docs/1.1.2-GUI-audit.md)。
+
+1.1.3 将游戏内模组显示名统一为 **AE2 Light UI Compat**；配套资源包删除四个非法资源路径，并使用英文显示说明。
 
 ## 为什么需要这个模组
 
@@ -50,7 +52,7 @@
 ## 安装方法
 
 1. 安装 Minecraft 1.20.1 对应的 Forge、AE2 及其必需依赖；AE2 15.4.11 包括 GuideME 依赖。
-2. 使用本地 `build/libs/` 内的产物，或从 [Releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) 下载 `AE2-Light-UI-Compat-Forge-1.20.1-1.1.2.jar`。
+2. 使用 `build/libs/` 中本地构建的 `AE2-Light-UI-Compat-Forge-1.20.1-1.1.3.jar`。
 3. 将 JAR 放入客户端游戏实例的 `mods` 文件夹。
 4. 单独安装配套资源包，并在游戏的资源包设置中启用。资源包不包含在本仓库的 Release 附件中。
 5. 更新时移除旧版适配模组，包括旧名称 `AE2-Isolated-Light-Buttons` 的 JAR，只保留一个版本。

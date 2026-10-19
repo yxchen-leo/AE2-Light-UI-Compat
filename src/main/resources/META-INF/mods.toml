@@ -6,7 +6,7 @@ clientSideOnly=true
 [[mods]]
 modId="ae2lightuicompat"
 version="${mod_version}"
-displayName="AE2 浅色界面适配 (AE2 Light UI Compat)"
+displayName="AE2 Light UI Compat"
 displayTest="IGNORE_ALL_VERSION"
 authors="Local resource-pack integration"
 description='''Light button styling and a connected, dynamically sized vertical
