@@ -1,0 +1,14 @@
+{
+  "files": 4439,
+  "png": 1959,
+  "json": 2474,
+  "removed_files": 607,
+  "modified_retained_pack_files": [
+    "CREDITS.txt"
+  ],
+  "remaining_asset_bytes_match_1_2_0": true,
+  "optional_factory_fingerprints": 70,
+  "jar_sha256": "af1a041d4b9f6bfd9c519787caebee4942d7ea3246621dc48eec3060b851766e",
+  "zip_sha256": "e95e94221947060a4d3b2b88e4c34c7c2b8a748890c76eeaa213ed465b9d75e8",
+  "validation": "Compilation, reobfuscation, static resource/bytecode and package inspection only; no runtime tests or game launched."
+}

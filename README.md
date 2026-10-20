@@ -6,7 +6,7 @@ A client-side button styling companion for Applied Energistics 2 on **Minecraft 
 
 [Published releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [Report an issue](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-Current source version: **1.2.0**, paired with **AE2 & Addons Texture Backport 1.2.0**. Download the JAR from [v1.2.0](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.2.0). See [bilingual release notes](docs/releases/1.2.0.md).
+Current source version: **1.2.1**, paired with **AE2 & Addons Texture Backport 1.2.1**. Download the JAR from [v1.2.1](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.2.1). See [bilingual release notes](docs/releases/1.2.1.md).
 
 The vertical toolbar now has a continuous, dynamically sized background connected to the main panel. Registered full-size toolbar icons use 18×20 backgrounds, spacing 6, hover depression and keyboard focus styling. Half-size icons retain their existing renderer. Original actions and 16×16 hitboxes are preserved. Both `textures/gui/vertical_buttons_bg.png` and `textures/gui/toolbar_buttons.png` must be present in the `ae2lightuicompat` namespace to enable the feature; resource reloads re-evaluate availability.
 
@@ -17,6 +17,11 @@ The companion pack sets the common toolbar origin to `left: 3, top: 1`. Crafting
 1.1.2 adds semantic back arrows for AE2 and compatible addon submenus, the modern priority icon and tab frames/offsets. It fixes the wireless settings/trash entries with pack 1.1.2. Dedicated `tab_buttons.png` enables the feature; removing it restores original item icons and rendering. See [GUI audit](docs/1.1.2-GUI-audit.md) for verified paths and remaining differences.
 
 1.1.3 changes the in-game mod display name to **AE2 Light UI Compat**. The companion pack removes four invalid resource paths and uses an English display description.
+
+
+## v1.2.1 data compatibility
+
+The companion pack removes incompatible high-version GuideME pages and four custom-loader overrides. This JAR skips 70 unchanged optional factory loot tables from mekmm 1.1.2 only when BOTH the matching block and item are absent. Existing machines, their inventory/energy/security NBT, and modified datapack tables are left intact. Single-player uses the client installation; multiplayer requires this JAR on the server for the loot fix. It does not register new machines. See [details](docs/1.2.1-compatibility.md).
 
 ## Why this mod exists
 
@@ -29,7 +34,7 @@ AE2 Light UI Compat marks buttons registered through AE2's widget container and 
 - Dedicated light-theme textures for supported AE2 buttons, including priority adjustment controls.
 - Modern normal/hover/disabled text colors with no shadow when the toolbar theme is present; preserves text alpha.
 - Automatic fallback to the original rendering when the dedicated texture is unavailable, including after disabling the resource pack and reloading resources.
-- Client-side installation; no server installation required.
+- GUI rendering runs on clients. The optional mekmm loot fix also runs on servers; install this JAR on a dedicated server to enable that fix there.
 
 This mod is the button compatibility component for **AE2 & Addons Texture Backport**. The separate resource pack supplies the backported GUI, item, block, and animated textures. This JAR does not bundle that resource pack or independently replace all AE2 interfaces.
 
@@ -43,14 +48,14 @@ Add-on controls can benefit when they use AE2's widget registration system. Cust
 | Mod loader | Forge 47.x |
 | Applied Energistics 2 | 15.x, with its required dependencies |
 | Resource pack | AE2 & Addons Texture Backport, or another pack providing the dedicated button texture |
-| Installation side | Client only |
+| Installation side | Client for GUI; also server for the optional mekmm loot fix |
 
 The build and offline injection checks use **Forge 47.4.0 / AE2 15.4.11**. Fabric, NeoForge, and other Minecraft versions are not supported by this release.
 
 ## Installation
 
 1. Install Forge for Minecraft 1.20.1, AE2, and AE2's required dependencies, including GuideME for AE2 15.4.11.
-2. Use the locally built `AE2-Light-UI-Compat-Forge-1.20.1-1.2.0.jar` from `build/libs/`.
+2. Use the locally built `AE2-Light-UI-Compat-Forge-1.20.1-1.2.1.jar` from `build/libs/`.
 3. Put the JAR in your client instance's `mods` folder.
 4. Install and enable the compatible resource pack in Minecraft's resource pack settings. The pack is distributed separately and is not included in this repository's Release assets.
 5. When upgrading, remove the previous companion JAR, including any old `AE2-Isolated-Light-Buttons` version. Keep only one copy installed.

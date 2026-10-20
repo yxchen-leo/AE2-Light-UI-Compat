@@ -6,7 +6,7 @@
 
 [已发布版本](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [反馈问题](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-当前源码版本为 **1.2.0**，配套资源包为 **AE2 & Addons Texture Backport 1.2.0**。请从 [v1.2.0 Release](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.2.0) 下载 JAR。详见 [中英文更新说明](docs/releases/1.2.0.md)。
+当前源码版本为 **1.2.1**，配套资源包为 **AE2 & Addons Texture Backport 1.2.1**。请从 [v1.2.1 Release](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.2.1) 下载 JAR。详见 [中英文更新说明](docs/releases/1.2.1.md)。
 
 1.1.0 新增 1.21.1 风格的左侧工具栏：连续底板连接主面板，按可见按钮数量伸缩；按钮背景为 18×20，排列间隔为 6，支持悬停下沉和键盘焦点样式。适配通过 `VerticalButtonBar` 注册的普通图标按钮；半尺寸按钮保留原绘制。按钮操作与 16×16 点击区域保持 AE2 原有行为。
 
@@ -20,6 +20,11 @@
 
 1.1.3 将游戏内模组显示名统一为 **AE2 Light UI Compat**；配套资源包删除四个非法资源路径，并使用英文显示说明。
 
+
+## v1.2.1 数据兼容
+
+配套资源包移除不适用的高版本 GuideME 内容与四个自定义加载器模型覆盖。本 JAR 仅在对应方块、物品均不存在，且战利品表与 mekmm 1.1.2 原件完全匹配时，跳过 70 张可选工厂表。已有机器及其物品栏、能量、权限等 NBT 和用户修改的数据包表保持原样。单人游戏安装客户端 JAR 即可；多人游戏需服务器也安装 JAR 才能修复服务端数据加载。不新增机器。详见 [核对说明](docs/1.2.1-compatibility.md)。
+
 ## 为什么需要这个模组
 
 将高版本 AE2 界面材质移植到 Minecraft 1.20.1 时，部分控件仍使用 Minecraft 的通用按钮渲染。例如，机器优先级界面的 `+1`、`+5` 等按钮可能在周围界面变为浅色后依然保持旧样式。如果通过资源包直接替换通用按钮贴图，游戏其他界面的按钮也会改变。
@@ -31,7 +36,7 @@
 - 为受支持的 AE2 按钮提供独立浅色贴图，包括优先级调整按钮。
 - 使用高版本普通、悬停、禁用配色与无阴影文字，并保留透明度；仅有旧文字按钮贴图时保留旧调色方案。
 - 专用贴图不存在时自动恢复原样，包括关闭资源包并完成资源重载之后。
-- 只需客户端安装，服务端无需安装。
+- GUI 功能在客户端生效；mekmm 战利品兼容也支持服务端，独立服务器需安装本 JAR 才能启用该修复。
 
 本模组是 **AE2 & Addons Texture Backport（AE2 及附属高版本材质移植）** 的按钮适配组件。GUI、物品、方块和动画材质由独立资源包提供；这个 JAR 不包含资源包，也不会单独替换全部 AE2 界面。
 
@@ -45,14 +50,14 @@
 | 模组加载器 | Forge 47.x |
 | Applied Energistics 2 | 15.x，并安装其必需依赖 |
 | 资源包 | AE2 & Addons Texture Backport，或提供专用按钮贴图的其他资源包 |
-| 安装位置 | 仅客户端 |
+| 安装位置 | GUI 安装客户端；mekmm 战利品修复也需安装到独立服务器 |
 
 构建和离线注入验证使用 **Forge 47.4.0 / AE2 15.4.11**。此版本不支持 Fabric、NeoForge 或其他 Minecraft 版本。
 
 ## 安装方法
 
 1. 安装 Minecraft 1.20.1 对应的 Forge、AE2 及其必需依赖；AE2 15.4.11 包括 GuideME 依赖。
-2. 使用 `build/libs/` 中本地构建的 `AE2-Light-UI-Compat-Forge-1.20.1-1.2.0.jar`。
+2. 使用 `build/libs/` 中本地构建的 `AE2-Light-UI-Compat-Forge-1.20.1-1.2.1.jar`。
 3. 将 JAR 放入客户端游戏实例的 `mods` 文件夹。
 4. 单独安装配套资源包，并在游戏的资源包设置中启用。资源包不包含在本仓库的 Release 附件中。
 5. 更新时移除旧版适配模组，包括旧名称 `AE2-Isolated-Light-Buttons` 的 JAR，只保留一个版本。

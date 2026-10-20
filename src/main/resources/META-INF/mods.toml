@@ -1,7 +1,6 @@
 modLoader="javafml"
 loaderVersion="[47,)"
 license="MIT (companion code only; resource assets retain original licenses)"
-clientSideOnly=true
 
 [[mods]]
 modId="ae2lightuicompat"
@@ -12,21 +11,23 @@ authors="Local resource-pack integration"
 description='''Modern light buttons, connected toolbars and navigation tabs for AE2.
 Includes AdvancedAE visual layout compatibility and the modern default screen
 color for Applied Mekanistics portable chemical cells. Requires the matching
-resource pack. Client-side only.'''
+resource pack. GUI changes are client-side. Also skips unchanged mekmm 1.1.2
+optional factory loot tables only when both the block and item are absent.
+Install on the server as well to enable that data fix in multiplayer.'''
 
 [[dependencies.ae2lightuicompat]]
 modId="forge"
 mandatory=true
 versionRange="[47,)"
 ordering="NONE"
-side="CLIENT"
+side="BOTH"
 
 [[dependencies.ae2lightuicompat]]
 modId="minecraft"
 mandatory=true
 versionRange="[1.20.1,1.20.2)"
 ordering="NONE"
-side="CLIENT"
+side="BOTH"
 
 [[dependencies.ae2lightuicompat]]
 modId="ae2"
