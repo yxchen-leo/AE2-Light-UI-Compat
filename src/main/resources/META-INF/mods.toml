@@ -9,10 +9,10 @@ version="${mod_version}"
 displayName="AE2 Light UI Compat"
 displayTest="IGNORE_ALL_VERSION"
 authors="Local resource-pack integration"
-description='''Light button styling and a connected, dynamically sized vertical
-toolbar for AE2. Includes modern toolbar button backgrounds and hover/focus
-states. Requires the matching resource pack; missing theme textures restore
-the original rendering. Client-side only.'''
+description='''Modern light buttons, connected toolbars and navigation tabs for AE2.
+Includes AdvancedAE visual layout compatibility and the modern default screen
+color for Applied Mekanistics portable chemical cells. Requires the matching
+resource pack. Client-side only.'''
 
 [[dependencies.ae2lightuicompat]]
 modId="forge"

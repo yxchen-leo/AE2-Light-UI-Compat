@@ -21,14 +21,26 @@ public final class VerifyMixins {
         Method transform = type.getMethod("transformClassBytes", String.class, String.class, byte[].class);
         transform.setAccessible(true);
         int transformed = 0;
-        for (String target : new String[]{"net.minecraft.client.gui.components.AbstractButton",
+        var targets = new java.util.ArrayList<>(java.util.List.of("net.minecraft.client.gui.components.AbstractButton",
                                          "appeng.client.gui.WidgetContainer",
                                          "appeng.client.gui.widgets.VerticalButtonBar",
                                          "appeng.client.gui.widgets.IconButton",
                                          "net.minecraft.client.gui.components.AbstractWidget",
                                          "appeng.client.gui.style.Blitter",
                                          "appeng.client.gui.widgets.TabButton",
-                                         "appeng.client.gui.implementations.AESubScreen"}) {
+                                         "appeng.client.gui.implementations.AESubScreen",
+                                         "appeng.items.tools.powered.AbstractPortableCell",
+                                         "appeng.client.gui.widgets.CPUSelectionList"));
+        for (String optional : new String[]{
+                "net.pedroksl.advanced_ae.gui.patternencoder.DirectionInputButton",
+                "net.pedroksl.advanced_ae.client.gui.AdvPatternEncoderScreen",
+                "net.pedroksl.advanced_ae.client.gui.QuantumArmorConfigScreen",
+                "net.pedroksl.advanced_ae.client.gui.QuantumCrafterTermScreen",
+                "net.pedroksl.advanced_ae.client.gui.widgets.AAEIcon"}) {
+            if (VerifyMixins.class.getClassLoader().getResource(optional.replace('.', '/') + ".class") != null)
+                targets.add(optional);
+        }
+        for (String target : targets) {
             String resource = target.replace('.', '/') + ".class";
             byte[] input;
             try (InputStream in = VerifyMixins.class.getClassLoader().getResourceAsStream(resource)) {
@@ -49,6 +61,11 @@ public final class VerifyMixins {
             }
             int expected = target.endsWith("AbstractButton") || target.endsWith("VerticalButtonBar")
                     || target.endsWith("WidgetContainer") ? 3 : target.endsWith("AESubScreen") ? 2 : 1;
+            if (target.endsWith("AbstractPortableCell")) expected = 4;
+            if (target.endsWith("AdvPatternEncoderScreen")) expected = 4; // Three injections + selection bridge.
+            if (target.endsWith("QuantumArmorConfigScreen")
+                    || target.endsWith("QuantumCrafterTermScreen")) expected = 3;
+            if (target.endsWith("AAEIcon")) expected = 4;
             if (hooks != expected) throw new AssertionError(target + " hook count " + hooks + ", expected " + expected);
             if (target.endsWith("AbstractButton") && !node.interfaces.contains("local/ae2lightuicompat/ScopedButton"))
                 throw new AssertionError("Ownership marker not attached");
@@ -80,7 +97,16 @@ public final class VerifyMixins {
             System.out.println("PASS real Mixin transformation + ASM bytecode analysis: " + target + " (" + hooks + " hooks)");
             transformed++;
         }
-        if (transformed != 8) throw new AssertionError();
+        if (transformed != targets.size()) throw new AssertionError();
+        for (String tier : new String[]{"1k", "4k", "16k", "64k", "256k"}) {
+            String id = "portable_chemical_storage_cell_" + tier;
+            if (local.ae2lightuicompat.PortableCellColors.resolve(0, "appmek", id, 2, false, true) != 8440575
+                    || local.ae2lightuicompat.PortableCellColors.resolve(0, "appmek", id, 2, true, true) != 0
+                    || local.ae2lightuicompat.PortableCellColors.resolve(123, "appmek", id, 1, false, true) != 123
+                    || local.ae2lightuicompat.PortableCellColors.resolve(0, "appmek", id, 2, false, false) != 0
+                    || local.ae2lightuicompat.PortableCellColors.resolve(123, "ae2", id, 2, false, true) != 123)
+                throw new AssertionError("Chemical cell palette/fallback mismatch: " + tier);
+        }
         for (String id : new String[]{"back", "button_back"}) {
             if (local.ae2lightuicompat.TabRenderer.roleFor(id) != local.ae2lightuicompat.TabRenderer.BACK)
                 throw new AssertionError("Missed back entry: " + id);

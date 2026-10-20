@@ -15,6 +15,14 @@ public final class ClientTheme {
             new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/toolbar_buttons.png");
     public static final ResourceLocation TABS =
             new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/tab_buttons.png");
+    public static final ResourceLocation ADVANCED_LAYOUT =
+            new ResourceLocation(AE2LightUICompat.MOD_ID, "compat/advanced_ae_layout.json");
+    public static final ResourceLocation CHEMICAL_PALETTE =
+            new ResourceLocation(AE2LightUICompat.MOD_ID, "compat/portable_chemical_cells.json");
+
+    public static boolean has(ResourceLocation marker) {
+        return Minecraft.getInstance().getResourceManager().getResource(marker).isPresent();
+    }
 
     private ClientTheme() {}
 

@@ -22,8 +22,8 @@ public final class TabRenderer {
     }
 
     public static void draw(GuiGraphics graphics, TabButton tab, Icon icon, ItemStack item, int role) {
-        // The old terminal forces CORNER in code. The modern terminal uses BOX.
-        var style = role == CRAFTING_STATUS ? TabButton.Style.BOX : tab.getStyle();
+        // Modern status and back entries use BOX even when a legacy layout requests CORNER.
+        var style = role == CRAFTING_STATUS || role == BACK ? TabButton.Style.BOX : tab.getStyle();
         int sx, sy, width, height;
         boolean focus = tab.isFocused();
         switch (style) {

@@ -6,7 +6,7 @@ A client-side button styling companion for Applied Energistics 2 on **Minecraft 
 
 [Published releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [Report an issue](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-Current source version: **1.1.3**, paired with **AE2 & Addons Texture Backport 1.1.3**. Download the JAR from [Release 1.1.3](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.1.3); local artifacts are in `build/libs/`.
+Current source version: **1.2.0**, paired with **AE2 & Addons Texture Backport 1.2.0**. Download the JAR from [v1.2.0](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.2.0). See [bilingual release notes](docs/releases/1.2.0.md).
 
 The vertical toolbar now has a continuous, dynamically sized background connected to the main panel. Registered full-size toolbar icons use 18×20 backgrounds, spacing 6, hover depression and keyboard focus styling. Half-size icons retain their existing renderer. Original actions and 16×16 hitboxes are preserved. Both `textures/gui/vertical_buttons_bg.png` and `textures/gui/toolbar_buttons.png` must be present in the `ae2lightuicompat` namespace to enable the feature; resource reloads re-evaluate availability.
 
@@ -50,7 +50,7 @@ The build and offline injection checks use **Forge 47.4.0 / AE2 15.4.11**. Fabri
 ## Installation
 
 1. Install Forge for Minecraft 1.20.1, AE2, and AE2's required dependencies, including GuideME for AE2 15.4.11.
-2. Use the locally built `AE2-Light-UI-Compat-Forge-1.20.1-1.1.3.jar` from `build/libs/`.
+2. Use the locally built `AE2-Light-UI-Compat-Forge-1.20.1-1.2.0.jar` from `build/libs/`.
 3. Put the JAR in your client instance's `mods` folder.
 4. Install and enable the compatible resource pack in Minecraft's resource pack settings. The pack is distributed separately and is not included in this repository's Release assets.
 5. When upgrading, remove the previous companion JAR, including any old `AE2-Isolated-Light-Buttons` version. Keep only one copy installed.

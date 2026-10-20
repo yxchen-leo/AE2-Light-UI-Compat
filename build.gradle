@@ -39,6 +39,10 @@ dependencies {
     implementation fg.deobf('maven.modrinth:ae2:jYgSnxye')
     runtimeOnly fg.deobf('maven.modrinth:guideme:i7Tp1AHw') // GuideME 20.1.15, required by AE2.
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    // Optional local addon fixtures for offline transformation checks; never bundled in the mod.
+    if (project.hasProperty('compatTestJars')) {
+        testRuntimeOnly files(project.property('compatTestJars').toString().split(','))
+    }
 }
 
 mixin {
@@ -70,6 +74,10 @@ tasks.register('verifyMixins', JavaExec) {
     systemProperty 'mixin.service', 'local.ae2lightuicompat.test.TestMixinService'
     systemProperty 'mixin.env.disableRefMap', 'true'
     args layout.buildDirectory.dir('mixin-verification').get().asFile.absolutePath
-    doFirst { layout.buildDirectory.dir('mixin-verification').get().asFile.mkdirs() }
+    doFirst {
+        layout.buildDirectory.dir('mixin-verification').get().asFile.mkdirs()
+        layout.buildDirectory.file('verification-classpath.txt').get().asFile.text =
+                sourceSets.test.runtimeClasspath.files.collect { it.absolutePath }.join('\n')
+    }
 }
 tasks.named('check') { dependsOn 'verifyMixins' }

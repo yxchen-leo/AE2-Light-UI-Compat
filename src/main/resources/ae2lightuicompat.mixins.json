@@ -12,7 +12,14 @@
     "WidgetRenderAccess",
     "BlitterMixin",
     "TabButtonMixin",
-    "AESubScreenMixin"
+    "AESubScreenMixin",
+    "PortableCellColorMixin",
+    "CPUSelectionHitAreaMixin",
+    "AdvancedDirectionButtonMixin",
+    "AdvancedEncoderScreenMixin",
+    "AdvancedArmorLayoutMixin",
+    "AdvancedTerminalLayoutMixin",
+    "AdvancedIconMixin"
   ],
   "injectors": {
     "defaultRequire": 1
