@@ -7,6 +7,8 @@ import net.minecraft.resources.ResourceLocation;
 
 /** AE-owned button styling; ForgeGradle remaps Minecraft calls for production. */
 public final class ClientTheme {
+    public static final ResourceLocation OUTPUT_DIRECTIONS =
+            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/output_direction_states.png");
     public static final ResourceLocation BUTTONS =
             new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/widgets.png");
     public static final ResourceLocation TOOLBAR_BACKGROUND =

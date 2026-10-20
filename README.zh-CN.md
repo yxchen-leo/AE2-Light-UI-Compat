@@ -1,12 +1,14 @@
 # AE2 Light UI Compat · AE2 浅色界面适配
 
+Release / 已发布：**1.2.2**，反应仓面配置按钮与 ExpandedAE 能源元件手册修复。见 [更新说明](docs/releases/1.2.2.md)。
+
 [English](README.md) | **简体中文**
 
 适用于 **Minecraft 1.20.1 / Forge** 的 AE2 客户端按钮适配模组。为通过 AE2 控件体系注册的按钮提供独立的浅色贴图和清晰的文字颜色，避免全局替换 Minecraft 通用按钮贴图。
 
 [已发布版本](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [反馈问题](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-当前源码版本为 **1.2.1**，配套资源包为 **AE2 & Addons Texture Backport 1.2.1**。请从 [v1.2.1 Release](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.2.1) 下载 JAR。详见 [中英文更新说明](docs/releases/1.2.1.md)。
+当前源码版本为 **1.2.2**，配套资源包为 **AE2 & Addons Texture Backport 1.2.2**。请从 [v1.2.2 Release](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases/tag/v1.2.2) 下载 JAR。详见 [中英文更新说明](docs/releases/1.2.2.md)。
 
 1.1.0 新增 1.21.1 风格的左侧工具栏：连续底板连接主面板，按可见按钮数量伸缩；按钮背景为 18×20，排列间隔为 6，支持悬停下沉和键盘焦点样式。适配通过 `VerticalButtonBar` 注册的普通图标按钮；半尺寸按钮保留原绘制。按钮操作与 16×16 点击区域保持 AE2 原有行为。
 
@@ -57,7 +59,7 @@
 ## 安装方法
 
 1. 安装 Minecraft 1.20.1 对应的 Forge、AE2 及其必需依赖；AE2 15.4.11 包括 GuideME 依赖。
-2. 使用 `build/libs/` 中本地构建的 `AE2-Light-UI-Compat-Forge-1.20.1-1.2.1.jar`。
+2. 使用 `build/libs/` 中本地构建的 `AE2-Light-UI-Compat-Forge-1.20.1-1.2.2.jar`。
 3. 将 JAR 放入客户端游戏实例的 `mods` 文件夹。
 4. 单独安装配套资源包，并在游戏的资源包设置中启用。资源包不包含在本仓库的 Release 附件中。
 5. 更新时移除旧版适配模组，包括旧名称 `AE2-Isolated-Light-Buttons` 的 JAR，只保留一个版本。
