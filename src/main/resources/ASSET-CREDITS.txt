@@ -1,0 +1,3 @@
+logo.png is copied byte-for-byte from AE2 & Addons Texture Backport pack.png.
+Original provenance: {"source": "Existing pack metadata; inventoried in 1.1.2 without byte changes", "sha256": "976df9ff053dfadc676873a2f4749f1b6c309a809037f548e66eda35cf3da25d"}
+The companion MIT code license does not relicense this image.

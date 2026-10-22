@@ -7,6 +7,8 @@ import net.minecraft.resources.ResourceLocation;
 
 /** AE-owned button styling; ForgeGradle remaps Minecraft calls for production. */
 public final class ClientTheme {
+    public static final ResourceLocation CHECKBOXES =
+            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/checkbox.png");
     public static final ResourceLocation LIGHTNING_PROVIDER =
             new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/lightning_pattern_provider.png");
     public static final ResourceLocation OUTPUT_DIRECTIONS =
