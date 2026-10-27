@@ -1,0 +1,38 @@
+{
+  "reference": "AE2 19.2.18 / Minecraft 1.21.1; local comparison source",
+  "target": "AE2 15.4.11 / Forge 1.20.1",
+  "assets": {
+    "assets/ae2/textures/gui/sprites/big_scroller.png": {
+      "size": [
+        12,
+        15
+      ],
+      "sha256": "583732b6abe3ccea373213b1ecf62217b724d3b2acd71b07070ec7f2e7aa13d3",
+      "matches_working_pack": true
+    },
+    "assets/ae2/textures/gui/sprites/big_scroller_disabled.png": {
+      "size": [
+        12,
+        15
+      ],
+      "sha256": "49e033a0736e52117a81e0f10715720f82cc82286fd072303702c757220cb374",
+      "matches_working_pack": true
+    },
+    "assets/ae2/textures/gui/sprites/small_scroller.png": {
+      "size": [
+        7,
+        15
+      ],
+      "sha256": "d06e44c1602297ecf6c700b52b01c3acface2f49e2b92a2570d1a6830d5ebc74",
+      "matches_working_pack": true
+    },
+    "assets/ae2/textures/gui/sprites/small_scroller_disabled.png": {
+      "size": [
+        7,
+        15
+      ],
+      "sha256": "9379cff1db6c1e56c14745af6cfd8e48bf939f16a9b2d46ac1848e6fdb654b72",
+      "matches_working_pack": true
+    }
+  }
+}
