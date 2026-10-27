@@ -7,6 +7,8 @@
     "OptionalFactoryLootMixin"
   ],
   "client": [
+    "LightningCraftConfirmMixin",
+    "SlotAppearanceMixin",
     "ScrollbarMixin",
     "AECheckboxMixin",
     "OutputDirectionButtonMixin",

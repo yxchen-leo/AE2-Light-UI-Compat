@@ -1,6 +1,6 @@
 # AE2 浅色界面适配
 
-已发布 **1.2.5**：高版本滚动条绘制适配，兼容资源包 **1.2.4**。见[更新说明](docs/releases/1.2.5.md)。
+已发布 **1.2.6**：ExtendedAE 物品与中文修复及 GUI 细节适配。请配套使用模组和资源包 **1.2.6**。见[更新说明](docs/releases/1.2.6.md)。
 
 [English](README.md) | **简体中文**
 
@@ -8,7 +8,7 @@
 
 [已发布版本](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [反馈问题](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-当前源码版本为 **1.2.5**，兼容 **AE2 & Addons Texture Backport 1.2.4**。详见[中英文更新说明](docs/releases/1.2.5.md)。
+当前源码版本为 **1.2.6**，配套资源包为 **1.2.6**。
 
 1.1.0 新增 1.21.1 风格的左侧工具栏：连续底板连接主面板，按可见按钮数量伸缩；按钮背景为 18×20，排列间隔为 6，支持悬停下沉和键盘焦点样式。适配通过 `VerticalButtonBar` 注册的普通图标按钮；半尺寸按钮保留原绘制。按钮操作与 16×16 点击区域保持 AE2 原有行为。
 
