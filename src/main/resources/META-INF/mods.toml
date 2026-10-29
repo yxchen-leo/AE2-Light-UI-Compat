@@ -9,7 +9,7 @@ displayName="AE2 Light UI Compat"
 logoFile="logo.png"
 logoBlur=false
 displayTest="IGNORE_ALL_VERSION"
-authors="Local resource-pack integration"
+authors="cyx"
 description='''Modern light buttons, connected toolbars and navigation tabs for AE2.
 Includes AdvancedAE visual layout compatibility and the modern default screen
 color for Applied Mekanistics portable chemical cells. Requires the matching
