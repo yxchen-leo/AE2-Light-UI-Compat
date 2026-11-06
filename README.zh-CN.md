@@ -59,7 +59,7 @@
 ## 安装方法
 
 1. 安装 Minecraft 1.20.1 对应的 Forge、AE2 及其必需依赖；AE2 15.4.11 包括 GuideME 依赖。
-2. 使用 `build/libs/` 中本地构建的 `AE2-Light-UI-Compat-Forge-1.20.1-1.2.3.jar`。
+2. 使用 `build/libs/` 中本地构建的 `AE2-Light-UI-Compat-Forge-1.20.1-1.2.7.jar`。
 3. 将 JAR 放入客户端游戏实例的 `mods` 文件夹。
 4. 单独安装配套资源包，并在游戏的资源包设置中启用。资源包不包含在本仓库的 Release 附件中。
 5. 更新时移除旧版适配模组，包括旧名称 `AE2-Isolated-Light-Buttons` 的 JAR，只保留一个版本。
@@ -84,7 +84,7 @@ assets/ae2lightuicompat/textures/gui/widgets.png
 
 完整侧栏主题启用时，文字颜色为普通 `#F2F2F2`、悬停 `#517497`、禁用 `#413F54`，不绘制阴影。仅提供 `widgets.png` 的旧主题保留 `#413F54` / `#D2D3DF` 配色；两者均保留透明度。
 
-从 1.0.2 起，内部模组 ID 和贴图命名空间统一为 `ae2lightuicompat`。请配合资源包 1.0.3 或更新版本使用，升级前移除所有旧版适配模组 JAR；不再使用旧 ID 和贴图路径。它们与游戏内显示名称 **AE2 浅色界面适配 (AE2 Light UI Compat)** 是不同概念。Java 入口类为 `local.ae2lightuicompat.AE2LightUICompat`。
+从 1.0.2 起，内部模组 ID 和贴图命名空间统一为 `ae2lightuicompat`。请配合资源包 1.0.3 或更新版本使用，升级前移除所有旧版适配模组 JAR；不再使用旧 ID 和贴图路径。它们与游戏内显示名称 **AE2 Light UI Compat** 是不同概念。Java 入口类为 `local.ae2lightuicompat.AE2LightUICompat`。
 
 ## 构建与开发
 
@@ -102,7 +102,7 @@ Linux/macOS：
 ./gradlew build
 ```
 
-产物位于 `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.1.2.jar`。
+产物位于 `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.2.7.jar`。
 
 在 IntelliJ IDEA 中按 Gradle 工程导入。常用开发命令：
 
@@ -119,6 +119,7 @@ Linux/macOS：
 1.0.2 已通过构建，以及开发环境和 Forge 47.4.0 / AE2 15.4.11 生产运行时类的离线注入检查。这些检查不能代替游戏画面验收，本次发布验证没有启动 Minecraft。
 
 ```text
+├── docs/                        # 文档、发布说明与核对记录
 ├── build.gradle                 # 依赖、ForgeGradle、Mixin 和验证任务
 ├── settings.gradle
 ├── gradle.properties            # Minecraft、Forge 和模组版本
@@ -130,7 +131,9 @@ Linux/macOS：
 └── src/test/resources/          # 测试服务配置
 ```
 
-`build/`、`.gradle/` 和 `run/` 在本地生成，不提交到 Git。早期使用的 Python 构建辅助脚本可在 Git 历史中查阅。
+版本说明及历史核对记录见[文档导航](docs/README.zh-CN.md)。
+
+`build/`、`.gradle/` 和 `run/` 在本地生成，不提交到 Git。没有构建任务运行时可清理构建缓存与日志；`run/` 中需要保留的开发存档请自行留存。发布 JAR 可从 GitHub Releases 获取，本地 `build/libs/` 仅保留当前版本。早期使用的 Python 构建辅助脚本可在 Git 历史中查阅。
 
 ## 开发说明与许可
 

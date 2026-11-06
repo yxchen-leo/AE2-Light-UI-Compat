@@ -57,7 +57,7 @@ The build and offline injection checks use **Forge 47.4.0 / AE2 15.4.11**. Fabri
 ## Installation
 
 1. Install Forge for Minecraft 1.20.1, AE2, and AE2's required dependencies, including GuideME for AE2 15.4.11.
-2. Use the locally built `AE2-Light-UI-Compat-Forge-1.20.1-1.2.3.jar` from `build/libs/`.
+2. Use the locally built `AE2-Light-UI-Compat-Forge-1.20.1-1.2.7.jar` from `build/libs/`.
 3. Put the JAR in your client instance's `mods` folder.
 4. Install and enable the compatible resource pack in Minecraft's resource pack settings. The pack is distributed separately and is not included in this repository's Release assets.
 5. When upgrading, remove the previous companion JAR, including any old `AE2-Isolated-Light-Buttons` version. Keep only one copy installed.
@@ -82,7 +82,7 @@ assets/ae2lightuicompat/textures/gui/widgets.png
 
 With the modern toolbar textures, text uses normal `#F2F2F2`, hover `#517497` and disabled `#413F54`, without shadows. Packs that only supply `widgets.png` retain the legacy dark-text palette (`#413F54` / `#D2D3DF`). Alpha is preserved.
 
-Since 1.0.2, the internal mod ID and texture namespace are `ae2lightuicompat`. Use resource pack 1.0.3 or newer and remove all older companion JARs before upgrading; the old ID and texture path are no longer used. These identifiers are separate from the display name, **AE2 浅色界面适配 (AE2 Light UI Compat)**. The Java entry point is `local.ae2lightuicompat.AE2LightUICompat`.
+Since 1.0.2, the internal mod ID and texture namespace are `ae2lightuicompat`. Use resource pack 1.0.3 or newer and remove all older companion JARs before upgrading; the old ID and texture path are no longer used. These identifiers are separate from the display name, **AE2 Light UI Compat**. The Java entry point is `local.ae2lightuicompat.AE2LightUICompat`.
 
 ## Build and development
 
@@ -100,7 +100,7 @@ Linux/macOS:
 ./gradlew build
 ```
 
-The output is `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.1.2.jar`.
+The output is `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.2.7.jar`.
 
 Import the project into IntelliJ IDEA as a Gradle project. Useful development commands:
 
@@ -117,6 +117,7 @@ Import the project into IntelliJ IDEA as a Gradle project. Useful development co
 For 1.0.2, the build and offline transformations against both development classes and production Forge 47.4.0 / AE2 15.4.11 classes passed. These checks do not replace in-game visual testing; the release verification did not launch Minecraft.
 
 ```text
+├── docs/                        # Documentation, releases and verification records
 ├── build.gradle                 # Dependencies, ForgeGradle, Mixin and checks
 ├── settings.gradle
 ├── gradle.properties            # Minecraft, Forge and mod versions
@@ -128,7 +129,9 @@ For 1.0.2, the build and offline transformations against both development classe
 └── src/test/resources/          # Test service configuration
 ```
 
-`build/`, `.gradle/`, and `run/` are generated locally and are not tracked. Earlier Python build helpers are retained in Git history.
+See the [documentation index](docs/README.md) for release notes and historical verification records.
+
+`build/`, `.gradle/`, and `run/` are generated locally and are not tracked. Build caches and logs may be removed when no build is running; keep any development worlds you need from `run/`. Release JARs are published on GitHub Releases; only the current JAR is retained locally in `build/libs/`. Earlier Python build helpers are retained in Git history.
 
 ## Development disclosure and license
 
