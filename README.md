@@ -1,8 +1,9 @@
 # AE2 Light UI Compat
 
+**English** | [简体中文](README.zh-CN.md)
+
 Release **1.2.7**: author `cyx` and a fixed resource pack display name. See the [release notes](docs/releases/1.2.7.md).
 
-**English** | [简体中文](README.zh-CN.md)
 
 A client-side button styling companion for Applied Energistics 2 on **Minecraft 1.20.1 with Forge**. It gives buttons registered through AE2's widget system their own light-theme texture and readable text colors, without globally replacing Minecraft's shared button texture.
 
@@ -141,6 +142,6 @@ The companion code is licensed under [MIT](LICENSE). Third-party tools and resou
 
 Development references: [Forge 1.20.1 MDK](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html) and [SpongePowered's Forge Mixin guide](https://github.com/SpongePowered/Mixin/wiki/Mixins-on-Minecraft-Forge).
 
-## Collaboration / 协作开发
+## Collaboration
 
-[首次准备、依赖校验与提交范围](COLLABORATION.md)。
+[Initial setup, dependency verification and contribution scope](COLLABORATION.md) (Chinese).

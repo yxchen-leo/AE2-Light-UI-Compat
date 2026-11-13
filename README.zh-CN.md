@@ -1,8 +1,9 @@
 # AE2 浅色界面适配
 
+[English](README.md) | **简体中文**
+
 已发布 **1.2.7**：作者改为 `cyx`，资源包显示固定名称。见[更新说明](docs/releases/1.2.7.md)。
 
-[English](README.md) | **简体中文**
 
 适用于 **Minecraft 1.20.1 / Forge** 的 AE2 客户端按钮适配模组。为通过 AE2 控件体系注册的按钮提供独立的浅色贴图和清晰的文字颜色，避免全局替换 Minecraft 通用按钮贴图。
 
@@ -142,3 +143,7 @@ Linux/macOS：
 适配模组代码采用 [MIT 许可证](LICENSE)。第三方工具和资源包材质遵循各自许可；本仓库的许可证不授予独立材质包的再分发权。本项目是独立适配模组，并非 AE2 官方发布。
 
 开发参考：[Forge 1.20.1 MDK](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html)、[SpongePowered Forge Mixin 指南](https://github.com/SpongePowered/Mixin/wiki/Mixins-on-Minecraft-Forge)。
+
+## 协作开发
+
+[首次准备、依赖校验与提交范围](COLLABORATION.md)。
