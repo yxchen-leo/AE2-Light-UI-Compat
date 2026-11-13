@@ -140,3 +140,7 @@ The implementation, build configuration, and documentation were developed with s
 The companion code is licensed under [MIT](LICENSE). Third-party tools and resource-pack textures retain their own licenses; this repository's license does not grant redistribution rights to the separate texture pack. This is an independent companion project, not an official AE2 release.
 
 Development references: [Forge 1.20.1 MDK](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html) and [SpongePowered's Forge Mixin guide](https://github.com/SpongePowered/Mixin/wiki/Mixins-on-Minecraft-Forge).
+
+## Collaboration / 协作开发
+
+[首次准备、依赖校验与提交范围](COLLABORATION.md)。
