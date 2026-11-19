@@ -2,6 +2,7 @@ package local.ae2lightuicompat;
 
 import appeng.client.gui.style.Blitter;
 import appeng.client.gui.widgets.Scrollbar;
+
 import net.minecraft.resources.ResourceLocation;
 
 /** Read modern AE2 sprites as standalone textures on Minecraft 1.20.1. */

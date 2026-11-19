@@ -2,14 +2,13 @@
 
 [English](README.md) | **简体中文**
 
-已发布 **1.2.7**：作者改为 `cyx`，资源包显示固定名称。见[更新说明](docs/releases/1.2.7.md)。
-
+已发布 **1.2.8**：整理代码、补齐离线 Mixin 验证，并加强配套资源包完整性检查。见[更新说明](docs/releases/1.2.8.md)。
 
 适用于 **Minecraft 1.20.1 / Forge** 的 AE2 客户端按钮适配模组。为通过 AE2 控件体系注册的按钮提供独立的浅色贴图和清晰的文字颜色，避免全局替换 Minecraft 通用按钮贴图。
 
 [已发布版本](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [反馈问题](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-当前源码版本为 **1.2.7**，配套资源包为 **1.2.7**。
+当前源码版本为 **1.2.8**，配套资源包为 **1.2.8**。
 
 1.1.0 新增 1.21.1 风格的左侧工具栏：连续底板连接主面板，按可见按钮数量伸缩；按钮背景为 18×20，排列间隔为 6，支持悬停下沉和键盘焦点样式。适配通过 `VerticalButtonBar` 注册的普通图标按钮；半尺寸按钮保留原绘制。按钮操作与 16×16 点击区域保持 AE2 原有行为。
 
@@ -22,7 +21,6 @@
 1.1.2 修复 AE2 与兼容附属子页面的返回箭头、优先级入口图标、页签背景和图标偏移，配套资源包修正无线设置/垃圾桶页面定位。专用 `tab_buttons.png` 存在时启用；移除后恢复原有物品图标和渲染。详见 [GUI 核对报告](docs/1.1.2-GUI-audit.md)。
 
 1.1.3 将游戏内模组显示名统一为 **AE2 Light UI Compat**；配套资源包删除四个非法资源路径，并使用英文显示说明。
-
 
 ## v1.2.1 数据兼容
 
@@ -60,7 +58,7 @@
 ## 安装方法
 
 1. 安装 Minecraft 1.20.1 对应的 Forge、AE2 及其必需依赖；AE2 15.4.11 包括 GuideME 依赖。
-2. 使用 `build/libs/` 中本地构建的 `AE2-Light-UI-Compat-Forge-1.20.1-1.2.7.jar`。
+2. 使用 `build/libs/` 中本地构建的 `AE2-Light-UI-Compat-Forge-1.20.1-1.2.8.jar`。
 3. 将 JAR 放入客户端游戏实例的 `mods` 文件夹。
 4. 单独安装配套资源包，并在游戏的资源包设置中启用。资源包不包含在本仓库的 Release 附件中。
 5. 更新时移除旧版适配模组，包括旧名称 `AE2-Isolated-Light-Buttons` 的 JAR，只保留一个版本。
@@ -103,7 +101,7 @@ Linux/macOS：
 ./gradlew build
 ```
 
-产物位于 `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.2.7.jar`。
+产物位于 `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.2.8.jar`。
 
 在 IntelliJ IDEA 中按 Gradle 工程导入。常用开发命令：
 
@@ -115,11 +113,12 @@ Linux/macOS：
 
 `runClient` 包含 Forge 47.4.0、AE2 15.4.11 和 GuideME 20.1.15。要查看浅色按钮效果，请把兼容资源包放入开发客户端的 `run/resourcepacks` 文件夹并启用。
 
-`verifyMixins` 会对 Minecraft 和 AE2 的开发环境类执行真实 Mixin 注入，并使用 ASM 检查生成的字节码；`build` 会自动执行该任务。发布 JAR 由 ForgeGradle 重映射，Mixin 引用映射由注解处理器生成。
+`verifyMixins` 对 15 个 Minecraft/AE2 目标执行真实 Mixin 注入，并使用 ASM 检查字节码。通过 `-PcompatTestJars=<路径>` 提供 AdvancedAE 测试 JAR 时，会再检查其 5 个目标；缺失可选依赖时明确报告跳过。`build` 会自动执行该任务。发布 JAR 由 ForgeGradle 重映射，Mixin 引用映射由注解处理器生成。
 
 1.0.2 已通过构建，以及开发环境和 Forge 47.4.0 / AE2 15.4.11 生产运行时类的离线注入检查。这些检查不能代替游戏画面验收，本次发布验证没有启动 Minecraft。
 
 ```text
+├── .editorconfig               # 编辑器格式约定
 ├── docs/                        # 文档、发布说明与核对记录
 ├── build.gradle                 # 依赖、ForgeGradle、Mixin 和验证任务
 ├── settings.gradle
@@ -146,4 +145,4 @@ Linux/macOS：
 
 ## 协作开发
 
-[首次准备、依赖校验与提交范围](COLLABORATION.md)。
+[首次准备、代码目录与提交范围](COLLABORATION.md)。

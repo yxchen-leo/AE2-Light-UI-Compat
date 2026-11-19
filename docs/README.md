@@ -9,6 +9,7 @@
 
 ## Release notes
 
+- [v1.2.8](releases/1.2.8.md)
 - [v1.2.7](releases/1.2.7.md)
 - [v1.2.6](releases/1.2.6.md)
 - [v1.2.5](releases/1.2.5.md)

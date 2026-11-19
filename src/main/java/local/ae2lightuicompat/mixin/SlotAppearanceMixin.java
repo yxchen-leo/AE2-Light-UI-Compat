@@ -1,9 +1,12 @@
 package local.ae2lightuicompat.mixin;
 
 import appeng.client.gui.AEBaseScreen;
+
 import local.ae2lightuicompat.ClientTheme;
+
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -13,12 +16,27 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 /** Modern slot artwork using the legacy screen's bounds and render depth. */
 @Mixin(AEBaseScreen.class)
 public abstract class SlotAppearanceMixin {
-    @Redirect(method = "renderCustomSlotHighlight", remap = false,
-            at = @At(value = "INVOKE", remap = true,
-                    target = "Lnet/minecraft/client/gui/GuiGraphics;fillGradient(Lnet/minecraft/client/renderer/RenderType;IIIIIII)V"),
-            require = 1, allow = 1)
-    private void ae2lightuicompat$highlight(GuiGraphics graphics, RenderType layer,
-            int x, int y, int right, int bottom, int colorTop, int colorBottom, int z) {
+    @Redirect(
+            method = "renderCustomSlotHighlight",
+            remap = false,
+            at =
+                    @At(
+                            value = "INVOKE",
+                            remap = true,
+                            target =
+                                    "Lnet/minecraft/client/gui/GuiGraphics;fillGradient(Lnet/minecraft/client/renderer/RenderType;IIIIIII)V"),
+            require = 1,
+            allow = 1)
+    private void ae2lightuicompat$highlight(
+            GuiGraphics graphics,
+            RenderType layer,
+            int x,
+            int y,
+            int right,
+            int bottom,
+            int colorTop,
+            int colorBottom,
+            int z) {
         if (!ClientTheme.isPackEnabled()) {
             graphics.fillGradient(layer, x, y, right, bottom, colorTop, colorBottom, z);
             return;
@@ -38,8 +56,12 @@ public abstract class SlotAppearanceMixin {
         }
     }
 
-    @ModifyConstant(method = "drawOptionalSlotBackground", remap = false,
-            constant = @Constant(floatValue = 0.4f), require = 1, allow = 1)
+    @ModifyConstant(
+            method = "drawOptionalSlotBackground",
+            remap = false,
+            constant = @Constant(floatValue = 0.4f),
+            require = 1,
+            allow = 1)
     private float ae2lightuicompat$disabledSlotOpacity(float original) {
         return ClientTheme.isPackEnabled() ? 0.2f : original;
     }

@@ -2,10 +2,12 @@ package local.ae2lightuicompat;
 
 import appeng.client.gui.Icon;
 import appeng.client.gui.style.Blitter;
+
 import com.mojang.blaze3d.systems.RenderSystem;
+
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -15,7 +17,9 @@ public final class ToolbarRenderer {
     private ToolbarRenderer() {}
 
     public static void background(GuiGraphics graphics, Rect2i screen, Rect2i bar) {
-        if (bar.getWidth() <= 0 || bar.getHeight() <= 0) return;
+        if (bar.getWidth() <= 0 || bar.getHeight() <= 0) {
+            return;
+        }
         int x = screen.getX() + bar.getX() - 2;
         int y = screen.getY() + bar.getY() - 1;
         int width = bar.getWidth() + 1;
@@ -37,9 +41,12 @@ public final class ToolbarRenderer {
         }
     }
 
-    private static void strip(GuiGraphics graphics, int x, int y, int width, int sourceY, int height) {
+    private static void strip(
+            GuiGraphics graphics, int x, int y, int width, int sourceY, int height) {
         Blitter.texture(ClientTheme.TOOLBAR_BACKGROUND, 21, 26)
-                .src(0, sourceY, 21, height).dest(x, y, width, height).blit(graphics);
+                .src(0, sourceY, 21, height)
+                .dest(x, y, width, height)
+                .blit(graphics);
     }
 
     public static void frame(GuiGraphics graphics, AbstractWidget button) {
@@ -52,7 +59,9 @@ public final class ToolbarRenderer {
         try {
             graphics.pose().translate(0, 0, 2);
             Blitter.texture(ClientTheme.TOOLBAR_BUTTONS)
-                    .src(sourceX, 128, 18, 20).dest(x - 1, y, 18, 20).blit(graphics);
+                    .src(sourceX, 128, 18, 20)
+                    .dest(x - 1, y, 18, 20)
+                    .blit(graphics);
         } finally {
             graphics.pose().popPose();
         }

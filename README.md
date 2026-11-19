@@ -2,14 +2,13 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-Release **1.2.7**: author `cyx` and a fixed resource pack display name. See the [release notes](docs/releases/1.2.7.md).
-
+Release **1.2.8**: code cleanup, expanded offline Mixin verification and resource pack integrity checks. See the [release notes](docs/releases/1.2.8.md).
 
 A client-side button styling companion for Applied Energistics 2 on **Minecraft 1.20.1 with Forge**. It gives buttons registered through AE2's widget system their own light-theme texture and readable text colors, without globally replacing Minecraft's shared button texture.
 
 [Published releases](https://github.com/yxchen-leo/AE2-Light-UI-Compat/releases) · [Report an issue](https://github.com/yxchen-leo/AE2-Light-UI-Compat/issues)
 
-Current source version: **1.2.7**, paired with resource pack **1.2.7**.
+Current source version: **1.2.8**, paired with resource pack **1.2.8**.
 
 The vertical toolbar now has a continuous, dynamically sized background connected to the main panel. Registered full-size toolbar icons use 18×20 backgrounds, spacing 6, hover depression and keyboard focus styling. Half-size icons retain their existing renderer. Original actions and 16×16 hitboxes are preserved. Both `textures/gui/vertical_buttons_bg.png` and `textures/gui/toolbar_buttons.png` must be present in the `ae2lightuicompat` namespace to enable the feature; resource reloads re-evaluate availability.
 
@@ -20,7 +19,6 @@ The companion pack sets the common toolbar origin to `left: 3, top: 1`. Crafting
 1.1.2 adds semantic back arrows for AE2 and compatible addon submenus, the modern priority icon and tab frames/offsets. It fixes the wireless settings/trash entries with pack 1.1.2. Dedicated `tab_buttons.png` enables the feature; removing it restores original item icons and rendering. See [GUI audit](docs/1.1.2-GUI-audit.md) for verified paths and remaining differences.
 
 1.1.3 changes the in-game mod display name to **AE2 Light UI Compat**. The companion pack removes four invalid resource paths and uses an English display description.
-
 
 ## v1.2.1 data compatibility
 
@@ -58,7 +56,7 @@ The build and offline injection checks use **Forge 47.4.0 / AE2 15.4.11**. Fabri
 ## Installation
 
 1. Install Forge for Minecraft 1.20.1, AE2, and AE2's required dependencies, including GuideME for AE2 15.4.11.
-2. Use the locally built `AE2-Light-UI-Compat-Forge-1.20.1-1.2.7.jar` from `build/libs/`.
+2. Use the locally built `AE2-Light-UI-Compat-Forge-1.20.1-1.2.8.jar` from `build/libs/`.
 3. Put the JAR in your client instance's `mods` folder.
 4. Install and enable the compatible resource pack in Minecraft's resource pack settings. The pack is distributed separately and is not included in this repository's Release assets.
 5. When upgrading, remove the previous companion JAR, including any old `AE2-Isolated-Light-Buttons` version. Keep only one copy installed.
@@ -101,7 +99,7 @@ Linux/macOS:
 ./gradlew build
 ```
 
-The output is `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.2.7.jar`.
+The output is `build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.2.8.jar`.
 
 Import the project into IntelliJ IDEA as a Gradle project. Useful development commands:
 
@@ -113,11 +111,12 @@ Import the project into IntelliJ IDEA as a Gradle project. Useful development co
 
 `runClient` includes Forge 47.4.0, AE2 15.4.11, and GuideME 20.1.15. Add the compatible resource pack to the development client's `run/resourcepacks` folder and enable it to inspect the themed buttons.
 
-`verifyMixins` applies real Mixin transformations to Minecraft and AE2 development classes and checks the resulting bytecode with ASM. It runs as part of `build`. ForgeGradle remaps the release JAR, and the Mixin annotation processor generates its reference map.
+`verifyMixins` applies real Mixin transformations to 15 Minecraft/AE2 targets and checks the resulting bytecode with ASM. Five AdvancedAE targets are also checked when its test JAR is provided through `-PcompatTestJars=<path>`; unavailable optional targets are explicitly skipped. It runs as part of `build`. ForgeGradle remaps the release JAR, and the Mixin annotation processor generates its reference map.
 
 For 1.0.2, the build and offline transformations against both development classes and production Forge 47.4.0 / AE2 15.4.11 classes passed. These checks do not replace in-game visual testing; the release verification did not launch Minecraft.
 
 ```text
+├── .editorconfig               # Editor formatting defaults
 ├── docs/                        # Documentation, releases and verification records
 ├── build.gradle                 # Dependencies, ForgeGradle, Mixin and checks
 ├── settings.gradle
@@ -144,4 +143,4 @@ Development references: [Forge 1.20.1 MDK](https://files.minecraftforge.net/net/
 
 ## Collaboration
 
-[Initial setup, dependency verification and contribution scope](COLLABORATION.md) (Chinese).
+[Initial setup, code layout and contribution scope](COLLABORATION.md) (Chinese).
