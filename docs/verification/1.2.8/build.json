@@ -1,0 +1,21 @@
+{
+  "version": "1.2.8",
+  "minecraft": "1.20.1",
+  "forge": "47.4.0",
+  "ae2": "15.4.11",
+  "advanced_ae_fixture": "1.3.6-1.20.1",
+  "java": 17,
+  "gradle_build": "passed",
+  "reobfuscation": "passed",
+  "required_mixin_targets": 15,
+  "optional_advanced_ae_targets": 5,
+  "asm_bytecode_verification": "passed",
+  "jar_metadata_and_refmap": "passed",
+  "in_game_tested": false,
+  "dedicated_server_tested": false,
+  "artifact": {
+    "artifact": "build/libs/AE2-Light-UI-Compat-Forge-1.20.1-1.2.8.jar",
+    "size": 63666,
+    "sha256": "c17d98204f205be07fe8ad54fa4d1c1be2247c015aa3d36bf957b27cfbf79ae2"
+  }
+}

@@ -21,8 +21,13 @@ public final class ButtonTextRenderer {
         int baseline = button.getY() + (button.getHeight() - 9) / 2 + 1;
         if (width <= right - left) {
             int offset = !button.active ? -1 : button.isHovered() ? 0 : 1;
-            graphics.drawString(font, button.getMessage(), button.getX() + (button.getWidth() - width) / 2,
-                    baseline - offset, color, false);
+            graphics.drawString(
+                    font,
+                    button.getMessage(),
+                    button.getX() + (button.getWidth() - width) / 2,
+                    baseline - offset,
+                    color,
+                    false);
         } else {
             int overflow = width - (right - left);
             double period = Math.max(overflow * 0.5, 3.0);
@@ -30,7 +35,8 @@ public final class ButtonTextRenderer {
             int scroll = (int) (overflow * (Math.sin(Math.cos(phase) * Math.PI / 2) + 1) / 2);
             graphics.enableScissor(left, button.getY(), right, button.getY() + button.getHeight());
             try {
-                graphics.drawString(font, button.getMessage(), left - scroll, baseline, color, false);
+                graphics.drawString(
+                        font, button.getMessage(), left - scroll, baseline, color, false);
             } finally {
                 graphics.disableScissor();
             }

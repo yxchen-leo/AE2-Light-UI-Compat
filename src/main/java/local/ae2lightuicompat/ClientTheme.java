@@ -1,38 +1,44 @@
 package local.ae2lightuicompat;
 
-import java.util.function.Consumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.function.Consumer;
+
 /** AE-owned button styling; ForgeGradle remaps Minecraft calls for production. */
 public final class ClientTheme {
     public static final ResourceLocation LIGHTNING_CRAFT_REPORT =
-            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/lightning_crafting_report.png");
-    public static final ResourceLocation CHECKBOXES =
-            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/checkbox.png");
+            resource("textures/gui/lightning_crafting_report.png");
+    public static final ResourceLocation CHECKBOXES = resource("textures/gui/checkbox.png");
     public static final ResourceLocation LIGHTNING_PROVIDER =
-            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/lightning_pattern_provider.png");
+            resource("textures/gui/lightning_pattern_provider.png");
     public static final ResourceLocation OUTPUT_DIRECTIONS =
-            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/output_direction_states.png");
-    public static final ResourceLocation BUTTONS =
-            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/widgets.png");
+            resource("textures/gui/output_direction_states.png");
+    public static final ResourceLocation BUTTONS = resource("textures/gui/widgets.png");
     public static final ResourceLocation TOOLBAR_BACKGROUND =
-            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/vertical_buttons_bg.png");
+            resource("textures/gui/vertical_buttons_bg.png");
     public static final ResourceLocation TOOLBAR_BUTTONS =
-            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/toolbar_buttons.png");
-    public static final ResourceLocation TABS =
-            new ResourceLocation(AE2LightUICompat.MOD_ID, "textures/gui/tab_buttons.png");
+            resource("textures/gui/toolbar_buttons.png");
+    public static final ResourceLocation TABS = resource("textures/gui/tab_buttons.png");
     public static final ResourceLocation ADVANCED_LAYOUT =
-            new ResourceLocation(AE2LightUICompat.MOD_ID, "compat/advanced_ae_layout.json");
+            resource("compat/advanced_ae_layout.json");
+    public static final ResourceLocation ADVANCED_ICONS =
+            resource("textures/gui/advanced_ae_states.png");
+    public static final ResourceLocation ADVANCED_ENCODER =
+            new ResourceLocation("ae2", "textures/guis/adv_pattern_encoder.png");
     public static final ResourceLocation CHEMICAL_PALETTE =
-            new ResourceLocation(AE2LightUICompat.MOD_ID, "compat/portable_chemical_cells.json");
+            resource("compat/portable_chemical_cells.json");
+
+    private ClientTheme() {}
+
+    private static ResourceLocation resource(String path) {
+        return new ResourceLocation(AE2LightUICompat.MOD_ID, path);
+    }
 
     public static boolean has(ResourceLocation marker) {
         return Minecraft.getInstance().getResourceManager().getResource(marker).isPresent();
     }
-
-    private ClientTheme() {}
 
     public static Consumer<AbstractWidget> markOwned(Consumer<AbstractWidget> original) {
         return widget -> {
@@ -46,7 +52,7 @@ public final class ClientTheme {
     public static boolean isPackEnabled() {
         // Check current resource state, so disabling the pack or F3+T immediately
         // restores vanilla rendering; no persistent global texture/state changes.
-        return Minecraft.getInstance().getResourceManager().getResource(BUTTONS).isPresent();
+        return has(BUTTONS);
     }
 
     public static int textColor(int original, boolean active) {
@@ -61,6 +67,6 @@ public final class ClientTheme {
     }
 
     public static boolean isTabEnabled() {
-        return Minecraft.getInstance().getResourceManager().getResource(TABS).isPresent();
+        return has(TABS);
     }
 }

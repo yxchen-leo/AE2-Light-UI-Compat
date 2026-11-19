@@ -1,6 +1,7 @@
 package local.ae2lightuicompat.mixin;
 
 import local.ae2lightuicompat.ClientTheme;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -10,8 +11,11 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 @Pseudo
 @Mixin(targets = "com.moakiee.ae2lt.client.crafting.AE2LtCraftConfirmScreen", remap = false)
 public abstract class LightningCraftConfirmMixin {
-    @ModifyConstant(method = {"init()V", "m_7856_()V"},
-            constant = @Constant(intValue = 68), require = 2, allow = 2)
+    @ModifyConstant(
+            method = {"init()V", "m_7856_()V"},
+            constant = @Constant(intValue = 68),
+            require = 2,
+            allow = 2)
     private int ae2lightuicompat$footerHeight(int original) {
         return ClientTheme.has(ClientTheme.LIGHTNING_CRAFT_REPORT) ? 64 : original;
     }

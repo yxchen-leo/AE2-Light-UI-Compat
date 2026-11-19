@@ -3,12 +3,15 @@ package local.ae2lightuicompat.mixin;
 import appeng.client.Point;
 import appeng.client.gui.ICompositeWidget;
 import appeng.client.gui.widgets.VerticalButtonBar;
+
 import local.ae2lightuicompat.ClientTheme;
 import local.ae2lightuicompat.ToolbarButton;
 import local.ae2lightuicompat.ToolbarRenderer;
+
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.Rect2i;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -26,8 +29,11 @@ public abstract class VerticalButtonBarMixin implements ICompositeWidget {
     }
 
     // The later 4s are folded 2 * MARGIN expressions; only change button spacing.
-    @ModifyConstant(method = "updateBeforeRender", constant = @Constant(intValue = 4, ordinal = 0),
-            require = 1, allow = 1)
+    @ModifyConstant(
+            method = "updateBeforeRender",
+            constant = @Constant(intValue = 4, ordinal = 0),
+            require = 1,
+            allow = 1)
     private int ae2lightuicompat$spacing(int original) {
         return ClientTheme.isToolbarEnabled() ? 6 : original;
     }
